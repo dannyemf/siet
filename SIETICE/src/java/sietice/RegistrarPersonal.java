@@ -2,29 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sietice;
 
-import com.sun.rave.faces.data.DefaultSelectItemsArray;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import java.util.ArrayList;
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.validator.LengthValidator;
-import javax.faces.validator.ValidatorException;
-import siet.dao.EmpleadoDAO;
-import siet.modelo.Empleado;
 import siet.servicio.ServicioEmpleado;
-import siet.util.EncrypUtil;
-
-
 
 public class RegistrarPersonal extends AbstractPageBean {
-    // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
 
+    // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
+    private int __placeholder;
+    
     /**
      * <p>Automatically managed component initialization.  <strong>WARNING:</strong>
      * This method is automatically generated, so any user-specified code inserted
@@ -43,42 +34,7 @@ public class RegistrarPersonal extends AbstractPageBean {
         lengthValidatorclave.setMinimum(5);
         lengthValidatorusuario.setMinimum(5);
     }
-    private DefaultSelectItemsArray dropdown1DefaultItems1 = new DefaultSelectItemsArray();
-
-    public DefaultSelectItemsArray getDropdown1DefaultItems1() {
-        return dropdown1DefaultItems1;
-    }
-
-    public void setDropdown1DefaultItems1(DefaultSelectItemsArray dsia) {
-        this.dropdown1DefaultItems1 = dsia;
-    }
-    private DefaultSelectItemsArray drpdownrolDefaultItems = new DefaultSelectItemsArray();
-
-    public DefaultSelectItemsArray getDrpdownrolDefaultItems() {
-        return drpdownrolDefaultItems;
-    }
-
-    public void setDrpdownrolDefaultItems(DefaultSelectItemsArray dsia) {
-        this.drpdownrolDefaultItems = dsia;
-    }
-    private DefaultSelectItemsArray dropdown1DefaultItems2 = new DefaultSelectItemsArray();
-
-    public DefaultSelectItemsArray getDropdown1DefaultItems2() {
-        return dropdown1DefaultItems2;
-    }
-
-    public void setDropdown1DefaultItems2(DefaultSelectItemsArray dsia) {
-        this.dropdown1DefaultItems2 = dsia;
-    }
-    private DefaultSelectItemsArray dropdown1DefaultItems3 = new DefaultSelectItemsArray();
-
-    public DefaultSelectItemsArray getDropdown1DefaultItems3() {
-        return dropdown1DefaultItems3;
-    }
-
-    public void setDropdown1DefaultItems3(DefaultSelectItemsArray dsia) {
-        this.dropdown1DefaultItems3 = dsia;
-    }
+    
     private LengthValidator lengthValidatordoapellido = new LengthValidator();
 
     public LengthValidator getLengthValidatordoapellido() {
@@ -135,12 +91,9 @@ public class RegistrarPersonal extends AbstractPageBean {
     }
 
     // </editor-fold>
-
-   
     public RegistrarPersonal() {
     }
 
-   
     @Override
     public void init() {
         // Perform initializations inherited from our superclass
@@ -148,7 +101,7 @@ public class RegistrarPersonal extends AbstractPageBean {
         // Perform application initialization that must complete
         // *before* managed components are initialized
         // TODO - add your own initialiation code here
-        
+
         // <editor-fold defaultstate="collapsed" desc="Managed Component Initialization">
         // Initialize automatically managed components
         // *Note* - this logic should NOT be modified
@@ -156,144 +109,82 @@ public class RegistrarPersonal extends AbstractPageBean {
             _init();
         } catch (Exception e) {
             log("EditarPersonal Initialization Failure", e);
-            throw e instanceof FacesException ? (FacesException) e: new FacesException(e);
+            throw e instanceof FacesException ? (FacesException) e : new FacesException(e);
         }
-        
-        // </editor-fold>
-        // Perform application initialization that must complete
-        // *after* managed components are initialized
-        // TODO - add your own initialization code here
-    }
-    private ArrayList<SelectItem> estadocivil;
-    private ArrayList<SelectItem> sexo;
-     private ArrayList<SelectItem> estado;
-    private ArrayList<SelectItem> rol;
-     private String mensajecedula="";
 
-    public ArrayList<SelectItem> getEstadoCivil() {
-        estadocivil = new ArrayList<SelectItem>();
-        estadocivil.add(new SelectItem("SOLTERO", "Soltero"));
-        estadocivil.add(new SelectItem("CASADO", "Casado"));
-         estadocivil.add(new SelectItem("VIUDO", "Viudo"));
-        estadocivil.add(new SelectItem("DIVORCIADO", "Divorciado"));
-        return estadocivil;
-    }
-    public void setEstadoCivil(ArrayList<SelectItem> estadoCivil) {
-        this.estadocivil = estadoCivil;
+    // </editor-fold>
+    // Perform application initialization that must complete
+    // *after* managed components are initialized
+    // TODO - add your own initialization code here
     }
 
-    public ArrayList<SelectItem> getSexo() {
-        sexo = new ArrayList<SelectItem>();
-        sexo.add(new SelectItem("M","Masculino"));
-        sexo.add(new SelectItem("F","Femenino"));
-        return sexo;
-    }
-
-    public void setSexo(ArrayList<SelectItem> sexo) {
-        this.sexo = sexo;
-    }
-
-    public ArrayList<SelectItem> getEstado() {
-        estado = new ArrayList<SelectItem>();
-        estado.add(new SelectItem("A","Activo"));
-        estado.add(new SelectItem("P","Pasivo"));
-        return estado;
-    }
-
-    public void setEstado(ArrayList<SelectItem> estado) {
-        this.estado = estado;
-    }
-
-    public ArrayList<SelectItem> getRol() {
-        rol = new ArrayList<SelectItem>();
-        rol.add(new SelectItem("PT","PersonalTecnico"));
-        rol.add(new SelectItem("A","Administrador"));
-        return rol;
-    }
-
-    public void setRol(ArrayList<SelectItem> rol) {
-        this.rol = rol;
-    }
-   
-    @Override
-    public void preprocess() {
-    }
-
-   
-    @Override
-    public void prerender() {
-    }
-
-    
-    @Override
-    public void destroy() {
-    }
-
-   
-
-
-     public ServicioEmpleado getServicioEmpleado() {
+    public ServicioEmpleado getServicioEmpleado() {
         return (ServicioEmpleado) getBean("ServicioEmpleado");
     }
 
-   
-
-     public void txtcedula_validate(FacesContext context, UIComponent component, Object value) {
-        boolean b = getServicioEmpleado().validarCedula(value.toString());
-        if(!b){
-            FacesMessage m = new FacesMessage("Cedula incorrecta");
-            throw new ValidatorException(m);
-        }
-         Empleado e =  new EmpleadoDAO().buscarPorCedulaER(value.toString());
-        if(e != null)
-        {
-             FacesMessage m = new FacesMessage(" Error Empleado Registrado ");
-            throw new ValidatorException(m);
-        }
+    public ArrayList<SelectItem> getSexo(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getSexo();
     }
 
-     public void txtcelular_validate(FacesContext context, UIComponent component, Object value) {
-       // boolean b = ServicioCliente.validarCedula(value.toString());
-            if(value.toString().length()< 9){
-                FacesMessage m = new FacesMessage(" Error Número de Celular incompleto");
-                throw new ValidatorException(m);
-            }
+    public ArrayList<SelectItem> getEstadoCivil(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getEstadoCivil();
+    }
 
+    public ArrayList<SelectItem> getRol(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getRol();
+    }
 
+    public ArrayList<SelectItem> getEstado(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getEstado();
     }
 
     public String btnaceptar_action() {
-        Empleado e = getServicioEmpleado().getEmpleadoEdicion();
-        e.setClave(EncrypUtil.encriptar(e.getClave()));
 
-        if(getServicioEmpleado().guardar())
-            {
+        if (getServicioEmpleado().guardar()) {
             return "caceptarp";
-            }
-            else {
-            return  null;
+        } else {
+            return null;
         }
 
-    }
-
-    /**
-     * @return the mensajecedula
-     */
-    public String getMensajecedula() {
-        return mensajecedula;
-    }
-
-    /**
-     * @param mensajecedula the mensajecedula to set
-     */
-    public void setMensajecedula(String mensajecedula) {
-        this.mensajecedula = mensajecedula;
-    }
+    }    
 
     public String btncancelar_action() {
         //return null means stay on the same page
+        getServicioEmpleado().setEmpleadoEdicion(null);
         return "ccancelp";
     }
-    
+
+    /**
+     * <p>Callback method that is called after the component tree has been
+     * restored, but before any event processing takes place.  This method
+     * will <strong>only</strong> be called on a postback request that
+     * is processing a form submit.  Customize this method to allocate
+     * resources that will be required in your event handlers.</p>
+     */
+    public void preprocess() {
+    }
+
+    /**
+     * <p>Callback method that is called just before rendering takes place.
+     * This method will <strong>only</strong> be called for the page that
+     * will actually be rendered (and not, for example, on a page that
+     * handled a postback and then navigated to a different page).  Customize
+     * this method to allocate resources that will be required for rendering
+     * this page.</p>
+     */
+    public void prerender() {
+    }
+
+    /**
+     * <p>Callback method that is called after rendering is completed for
+     * this request, if <code>init()</code> was called (regardless of whether
+     * or not this was the page that was actually rendered).  Customize this
+     * method to release resources acquired in the <code>init()</code>,
+     * <code>preprocess()</code>, or <code>prerender()</code> methods (or
+     * acquired during execution of an event handler).</p>
+     */
+    public void destroy() {        
+    }
+
 }
 

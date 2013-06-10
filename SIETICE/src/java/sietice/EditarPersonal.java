@@ -2,33 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sietice;
 
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import java.util.ArrayList;
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.validator.LengthValidator;
-import javax.faces.validator.ValidatorException;
-import siet.modelo.Empleado;
 import siet.servicio.ServicioCliente;
 import siet.servicio.ServicioProyecto;
 import siet.servicio.ServicioEmpleado;
-import siet.util.EncrypUtil;
-import siet.util.StringUtil;
 
-
-
-public class EditarPersonal extends AbstractPageBean {
-
-    private String clave="";    
+public class EditarPersonal extends AbstractPageBean {    
 
     // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
-
     /**
      * <p>Automatically managed component initialization.  <strong>WARNING:</strong>
      * This method is automatically generated, so any user-specified code inserted
@@ -44,11 +31,7 @@ public class EditarPersonal extends AbstractPageBean {
         lengthValidatorcelular.setMaximum(9);
         lengthValidatorcelular.setMinimum(9);
     }
-
-    public void editar(Empleado e){
-        clave = "";        
-    }
-
+    
     private LengthValidator lengthValidatorapellido = new LengthValidator();
 
     public LengthValidator getLengthValidatorapellido() {
@@ -87,13 +70,11 @@ public class EditarPersonal extends AbstractPageBean {
     }
 
     // </editor-fold>
-
     /**
      * <p>Construct a new Page bean instance.</p>
      */
     public EditarPersonal() {
     }
-
 
     @Override
     public void init() {
@@ -112,108 +93,40 @@ public class EditarPersonal extends AbstractPageBean {
             log("Page1 Initialization Failure", e);
             throw e instanceof FacesException ? (FacesException) e : new FacesException(e);
         }
-   
-    }
-    private ArrayList<SelectItem> estadocivil;
-    private ArrayList<SelectItem> sexo;
-     private ArrayList<SelectItem> estado;
-    private ArrayList<SelectItem> rol;
 
-    public ArrayList<SelectItem> getEstadoCivil() {
-        estadocivil = new ArrayList<SelectItem>();
-        estadocivil.add(new SelectItem("SOLTERO", "Soltero"));
-        estadocivil.add(new SelectItem("CASADO", "Casado"));
-         estadocivil.add(new SelectItem("VIUDO", "Viudo"));
-        estadocivil.add(new SelectItem("DIVORCIADO", "Divorciado"));
-        return estadocivil;
-    }
-    public void setEstadoCivil(ArrayList<SelectItem> estadoCivil) {
-        this.estadocivil = estadoCivil;
     }
 
-    public ArrayList<SelectItem> getSexo() {
-        sexo = new ArrayList<SelectItem>();
-        sexo.add(new SelectItem("M","Masculino"));
-        sexo.add(new SelectItem("F","Femenino"));
-        return sexo;
+    public ArrayList<SelectItem> getSexo(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getSexo();
     }
 
-    public void setSexo(ArrayList<SelectItem> sexo) {
-        this.sexo = sexo;
+    public ArrayList<SelectItem> getEstadoCivil(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getEstadoCivil();
     }
 
-    public ArrayList<SelectItem> getEstado() {
-        estado = new ArrayList<SelectItem>();
-        estado.add(new SelectItem("A","Activo"));
-        estado.add(new SelectItem("P","Pasivo"));
-        return estado;
+    public ArrayList<SelectItem> getRol(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getRol();
     }
 
-    public void setEstado(ArrayList<SelectItem> estado) {
-        this.estado = estado;
+    public ArrayList<SelectItem> getEstado(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getEstado();
     }
 
-    public ArrayList<SelectItem> getRol() {
-        rol = new ArrayList<SelectItem>();
-        rol.add(new SelectItem("PT","PersonalTecnico"));
-        rol.add(new SelectItem("admin","Administrador"));
-        return rol;
-    }
-
-    public void setRol(ArrayList<SelectItem> rol) {
-        this.rol = rol;
-    }
-
-   
-    @Override
-    public void preprocess() {
-    }
-
-   
-    @Override
-    public void prerender() {
-    }
-
-    @Override
-    public void destroy() {
-    }
-     protected ServicioProyecto getServicioProyecto() {
+    protected ServicioProyecto getServicioProyecto() {
         return (ServicioProyecto) getBean("ServicioProyecto");
     }
-   
-    public  ServicioCliente getServicioCliente() {
+
+    public ServicioCliente getServicioCliente() {
         return (ServicioCliente) getBean("ServicioCliente");
     }
 
-     public  ServicioEmpleado getServicioEmpleado() {
+    public ServicioEmpleado getServicioEmpleado() {
         return (ServicioEmpleado) getBean("ServicioEmpleado");
     }
-     
-    public void txtcedula_validate(FacesContext context, UIComponent component, Object value) {
-        boolean b = ServicioEmpleado.validarCedula(value.toString());
-        if(!b){
-            FacesMessage m = new FacesMessage("Cedula incorrecta");
-            throw new ValidatorException(m);
-        }
-    }
 
-     public void txtcelular_validate(FacesContext context, UIComponent component, Object value) {
-       // boolean b = ServicioCliente.validarCedula(value.toString());
-            if(value.toString().length()< 9){
-                FacesMessage m = new FacesMessage(" Error Número de Celular incompleto");
-                throw new ValidatorException(m);
-            }
-
-    }
+        
 
     public String btnaceptar_action() {
-
-        Empleado e = getServicioEmpleado().getEmpleadoEdicion();
-
-        if(!StringUtil.isNullOrEmpty(clave)){
-            e.setClave(EncrypUtil.encriptar(clave));
-        }
-
         getServicioEmpleado().guardar();
         // TODO: Replace with your code
         return "aceptar";
@@ -221,24 +134,41 @@ public class EditarPersonal extends AbstractPageBean {
 
     public String btncancelar_action() {
         //return null means stay on the same page
+        getServicioEmpleado().setEmpleadoEdicion(null);
         return "cancelar";
     }
 
     /**
-     * @return the clave
+     * <p>Callback method that is called after the component tree has been
+     * restored, but before any event processing takes place.  This method
+     * will <strong>only</strong> be called on a postback request that
+     * is processing a form submit.  Customize this method to allocate
+     * resources that will be required in your event handlers.</p>
      */
-    public String getClave() {
-        return clave;
+    public void preprocess() {
     }
 
     /**
-     * @param clave the clave to set
+     * <p>Callback method that is called just before rendering takes place.
+     * This method will <strong>only</strong> be called for the page that
+     * will actually be rendered (and not, for example, on a page that
+     * handled a postback and then navigated to a different page).  Customize
+     * this method to allocate resources that will be required for rendering
+     * this page.</p>
      */
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void prerender() {
     }
 
-    
+    /**
+     * <p>Callback method that is called after rendering is completed for
+     * this request, if <code>init()</code> was called (regardless of whether
+     * or not this was the page that was actually rendered).  Customize this
+     * method to release resources acquired in the <code>init()</code>,
+     * <code>preprocess()</code>, or <code>prerender()</code> methods (or
+     * acquired during execution of an event handler).</p>
+     */
+    public void destroy() {
+    }
     
 }
 

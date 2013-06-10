@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sietice;
 
 import com.icesoft.faces.component.jsfcl.data.DefaultSelectedData;
@@ -12,18 +11,9 @@ import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import java.io.File;
 import java.util.ArrayList;
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.validator.LengthValidator;
-import javax.faces.validator.ValidatorException;
 import siet.servicio.ServicioCliente;
-import siet.servicio.ServicioProyecto;
-import siet.servicio.ServicioDocumentacion;
-import siet.servicio.ServicioEmpleado;
-import siet.util.EncrypUtil;
-import siet.util.StringUtil;
 import sietice.reportes.RecursoFile;
 
 /**
@@ -37,20 +27,19 @@ import sietice.reportes.RecursoFile;
  * @version Created on 24/06/2010, 12:52:09 AM
  * @author Desarrollador
  */
-
 public class EditClienteCli extends AbstractPageBean {
 
-    private String clave="";
-    private String confirmclave ="";
+    private String clave = "";
+    private String confirmclave = "";
 
     // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
-
     /**
      * <p>Automatically managed component initialization.  <strong>WARNING:</strong>
      * This method is automatically generated, so any user-specified code inserted
      * here is subject to being replaced.</p>
      */
-     private RecursoFile recursoAyuda;
+    private RecursoFile recursoAyuda;
+
     private void _init() throws Exception {
         lengthValidatorapellido.setMaximum(15);
         lengthValidatorclave.setMaximum(15);
@@ -116,7 +105,6 @@ public class EditClienteCli extends AbstractPageBean {
     }
 
     // </editor-fold>
-
     /**
      * <p>Construct a new Page bean instance.</p>
      */
@@ -142,7 +130,7 @@ public class EditClienteCli extends AbstractPageBean {
         // Perform application initialization that must complete
         // *before* managed components are initialized
         // TODO - add your own initialiation code here
-        
+
         // <editor-fold defaultstate="collapsed" desc="Managed Component Initialization">
         // Initialize automatically managed components
         // *Note* - this logic should NOT be modified
@@ -150,40 +138,22 @@ public class EditClienteCli extends AbstractPageBean {
             _init();
         } catch (Exception e) {
             log("EditClienteCli Initialization Failure", e);
-            throw e instanceof FacesException ? (FacesException) e: new FacesException(e);
+            throw e instanceof FacesException ? (FacesException) e : new FacesException(e);
         }
-        
-        // </editor-fold>
-        // Perform application initialization that must complete
-        // *after* managed components are initialized
-        // TODO - add your own initialization code here
-    }
-    private ArrayList<SelectItem> estadoCivil;
-    private ArrayList<SelectItem> sexo;
 
+    // </editor-fold>
+    // Perform application initialization that must complete
+    // *after* managed components are initialized
+    // TODO - add your own initialization code here
+    }    
 
     public ArrayList<SelectItem> getEstadoCivil() {
-        estadoCivil = new ArrayList<SelectItem>();
-        estadoCivil.add(new SelectItem("SOLTERO", "Soltero"));
-        estadoCivil.add(new SelectItem("CASADO", "Casado"));
-         estadoCivil.add(new SelectItem("VIUDO", "Viudo"));
-        estadoCivil.add(new SelectItem("DIVORCIADO", "Divorciado"));
-        return estadoCivil;
-    }
-    public void setEstadoCivil(ArrayList<SelectItem> estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
+        return getServicioCliente().getEstadoCivil();
+    }    
 
     public ArrayList<SelectItem> getSexo() {
-        sexo = new ArrayList<SelectItem>();
-        sexo.add(new SelectItem("M","Masculino"));
-        sexo.add(new SelectItem("F","Femenino"));
-        return sexo;
-    }
-
-    public void setSexo(ArrayList<SelectItem> sexo) {
-        this.sexo = sexo;
-    }
+        return getServicioCliente().getSexo();
+    }    
 
     /**
      * <p>Callback method that is called after the component tree has been
@@ -218,84 +188,22 @@ public class EditClienteCli extends AbstractPageBean {
      */
     @Override
     public void destroy() {
-    }
+    }   
 
-    /**
-     * <p>Return a reference to the scoped data bean.</p>
-     *
-     * @return reference to the scoped data bean
-     */
-    protected ServicioCliente getservicio$ServicioCliente() {
-        return (ServicioCliente) getBean("servicio$ServicioCliente");
-    }
-
-    
-
-    /**
-     * <p>Return a reference to the scoped data bean.</p>
-     *
-     * @return reference to the scoped data bean
-     */
-    protected ServicioProyecto getservicio$ServicioProyecto() {
-        return (ServicioProyecto) getBean("servicio$ServicioProyecto");
-    }
-
-   
-
-    /**
-     * <p>Return a reference to the scoped data bean.</p>
-     *
-     * @return reference to the scoped data bean
-     */
-    protected ServicioDocumentacion getservicio$ServicioDocumentacion() {
-        return (ServicioDocumentacion) getBean("servicio$ServicioDocumentacion");
-    }
-
-    /**
-     * <p>Return a reference to the scoped data bean.</p>
-     *
-     * @return reference to the scoped data bean
-     */
-    protected ServicioEmpleado getservicio$ServicioEmpleado() {
-        return (ServicioEmpleado) getBean("servicio$ServicioEmpleado");
-    }
-
-    public void txtcedula_validate(FacesContext context, UIComponent component, Object value) {
-        boolean b = getServicioCliente().validarCedula(value.toString());
-        if(!b){
-            FacesMessage m = new FacesMessage("Cedula incorrecta");
-            throw new ValidatorException(m);
-        }
-    }
-    public  ServicioCliente getServicioCliente() {
+    public ServicioCliente getServicioCliente() {
         return (ServicioCliente) getBean("ServicioCliente");
     }
 
-    public String btnaceptar_action() {
-
-        String oldClave = getServicioCliente().getClienteEdicion().getClave();
-
-        if(!StringUtil.isNullOrEmpty(clave)){
-            if(clave.equals(confirmclave)){
-                getServicioCliente().getClienteEdicion().setClave(EncrypUtil.encriptar(clave));
-            }else{
-                FacesContext.getCurrentInstance().addMessage("formEditCliente:secretconfclave", new FacesMessage("La confirmación de la clave no es correcta"));
-                return null;
-            }
-        }
+    public String btnaceptar_action() {       
 
         boolean b = getServicioCliente().guardar();
 
-        //Si hubo error al guardar restauro la clave inicial
-        if(!b){
-            getServicioCliente().getClienteEdicion().setClave(oldClave);
-        }
-
         return "case1";
     }
-public RecursoFile getRecursoAyuda() {
-        InterceptingServletSession e = (InterceptingServletSession)getExternalContext().getSession(true);
-        String c = e.getServletContext().getRealPath("/")+"recursos"+File.separator+"Ayuda_Cliente.pdf";
+
+    public RecursoFile getRecursoAyuda() {
+        InterceptingServletSession e = (InterceptingServletSession) getExternalContext().getSession(true);
+        String c = e.getServletContext().getRealPath("/") + "recursos" + File.separator + "Ayuda_Cliente.pdf";
         recursoAyuda = new RecursoFile(c);
         return recursoAyuda;
     }
@@ -306,16 +214,7 @@ public RecursoFile getRecursoAyuda() {
     public void setRecursoAyuda(RecursoFile recursoAyuda) {
         this.recursoAyuda = recursoAyuda;
     }
-    public void txtcelular_validate(FacesContext context, UIComponent component, Object value) {
-       // boolean b = ServicioCliente.validarCedula(value.toString());
-            if(value.toString().length()< 9){
-                FacesMessage m = new FacesMessage(" Error Número de Celular incompleto");
-                throw new ValidatorException(m);
-            }
-
-
-    }
-
+    
     public String btnvolver1_action() {
         //return null means stay on the same page
         return "case2";
@@ -348,6 +247,5 @@ public RecursoFile getRecursoAyuda() {
     public void setConfirmclave(String confirmclave) {
         this.confirmclave = confirmclave;
     }
-    
 }
 

@@ -2353,47 +2353,55 @@ Disabled classes for the calendar controls
 ----------- message ----------
 */
 .iceMsg {
-
+    text-align: left;
 }
 
 .iceMsgFatal {
     color: red;
+    text-align: left;
 }
 
 .iceMsgError {
     color: red;
+    text-align: left;
 }
 
 .iceMsgWarn {
     color: orange;
+    text-align: left;
 }
 
 .iceMsgInfo {
-
+    text-align: left;
+    color: blue;
 }
 
 /*
 ----------- messages ----------
 */
 .iceMsgs {
-
+    text-align: left;
 }
 
 .iceMsgsFatal {
-
+    color: red;
+    text-align: left;
 }
 
 .iceMsgsError {
     color: red;
+    text-align: left;
 }
 
 .iceMsgsWarn {
     color: orange;
+    text-align: left;
 }
 
 .iceMsgsInfo {
     color: yellow;
-    font-weight: bold;    
+    font-weight: bold;
+    text-align: left;
 }
 
 /*

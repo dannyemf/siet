@@ -1,12 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
     <!--
                 ===================
                 JAX-WS WSIMPORT SECTION
                 ===================
             -->
     <target name="wsimport-init" depends="init">
-        <mkdir dir="${build.generated.dir}/wsimport/client"/>
-        <mkdir dir="${build.generated.dir}/wsimport/binaries"/>
+        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
         <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
             <classpath path="${java.home}/../lib/tools.jar:${j2ee.platform.wsimport.classpath}:${javac.classpath}"/>
         </taskdef>
@@ -14,22 +26,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-check-SietWS" depends="wsimport-init">
-        <condition property="wsimport-client-SietWS.notRequired">
-            <available file="${build.generated.dir}/wsimport/client/siet/web/service/SietWS.java"/>
-        </condition>
-    </target>
-    <target name="wsimport-client-SietWS" depends="wsimport-init,wsimport-client-check-SietWS" unless="wsimport-client-SietWS.notRequired">
-        <wsimport sourcedestdir="${build.generated.dir}/wsimport/client" destdir="${build.generated.dir}/wsimport/binaries" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETICE/SietWS.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8084/SIETICE/SietWS?wsdl" xnocompile="true"/>
-    </target>
-    <target name="wsimport-client-clean-SietWS" depends="-init-project">
-        <delete dir="${build.generated.dir}/wsimport/client/siet/web/service"/>
-    </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-SietWS"/>
-    <target name="wsimport-client-compile" depends="-pre-pre-compile">
-        <webproject2:javac srcdir="${build.generated.dir}/wsimport/client" classpath="${j2ee.platform.wsimport.classpath}:${javac.classpath}" destdir="${build.classes.dir}"/>
-        <copy todir="${build.classes.dir}">
-            <fileset dir="${build.generated.dir}/wsimport/binaries" includes="**/*.xml"/>
+    <target name="wsimport-client-SietWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/SietWS"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SietWS" destdir="${build.generated.dir}/jax-wsCache/SietWS" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETICE/SietWS.wsdl" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:8084/SIETICE/SietWS?wsdl" xnocompile="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETICE/SietWS.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/SietWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/SietWS">
+                <include name="**/*.java"/>
+            </fileset>
         </copy>
     </target>
+    <target name="wsimport-client-clean-SietWS" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/siet/web/service"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/SietWS"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-SietWS"/>
 </project>

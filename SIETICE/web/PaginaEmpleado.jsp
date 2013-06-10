@@ -41,7 +41,7 @@
                                     style="font-size: 12px; font-style: oblique; font-weight: bold; left: 40%; top: 72px; position: absolute; width: 141px" value="#{PaginaEmpleado.servicioEmpleado.empleadoLogeado.nombres} #{PaginaEmpleado.servicioEmpleado.empleadoLogeado.apellido}"/>
                                 <ice:graphicImage id="graphicImage2" style="left: 384px; top: 144px; position: absolute" value="/resources/casa_ok.jpeg"/>
                                 <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" label="Ayuda" mimeType="application/pdf"
-                                    resource="#{PaginaEmpleado.recursoAyuda}" shared="true" style="color: rgb(255, 0, 0); font-size: 20px; left: 80%; top: 25px; position: absolute; width: 406px"/>
+                                    resource="#{PaginaEmpleado.recursoAyuda}" shared="true" style="color: rgb(255, 0, 0); font-size: 20px; left: 70%; top: 25px; position: absolute; width: 406px"/>
                             </ice:panelLayout>
                         </div>
                     </ice:panelLayout>

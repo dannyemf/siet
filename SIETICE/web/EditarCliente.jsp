@@ -22,7 +22,7 @@
                             </ice:panelLayout>
                         </div>
                         <div align="center">
-                            <ice:panelLayout id="panecuerpo" style="border: 1px solid rgb(0, 51, 51); height: 470px; left: 0%; top: 5px; position: relative; width: 960px; -rave-layout: grid;">
+                            <ice:panelLayout id="panecuerpo" style="border: 1px solid rgb(0, 51, 51); height: 500px; left: 0%; top: 5px; position: relative; width: 960px; -rave-layout: grid;">
                                 <ice:outputLabel id="label2" style="left: 144px; top: 160px; position: absolute" value="Nombres: *"/>
                                 <ice:outputLabel id="label3" style="left: 144px; top: 120px; position: absolute" value="Primer Apellido: *"/>
                                 <ice:outputLabel id="label4" style="height: 17px; left: 144px; top: 72px; position: absolute" value="Cédula: *"/>
@@ -30,7 +30,7 @@
                                 <ice:outputLabel id="label6" style="left: 144px; top: 200px; position: absolute" value="Estado Civil: *"/>
                                 <ice:outputLabel id="label7" style="left: 480px; top: 200px; position: absolute" value="Sexo: *"/>
                                 <ice:inputText id="txtcedula" maxlength="10" onchange="toEntero(this);" onkeyup="toEntero(this);" required="true"
-                                    style="height: 23px; left: 286px; top: 70px; position: absolute" validator="#{EditarCliente.txtcedula_validate}" value="#{EditarCliente.servicioCliente.clienteEdicion.ci}"/>
+                                style="height: 23px; left: 286px; top: 70px; position: absolute" validator="#{ServicioCliente.txtcedula_validate}" value="#{EditarCliente.servicioCliente.clienteEdicion.ci}"/>
                                 <ice:inputText id="txtapellido" onchange="toCadena(this);" onkeyup="toCadena(this);" required="true"
                                     style="height: 23px; left: 286px; top: 118px; position: absolute"
                                     validator="#{EditarCliente.lengthValidatorapellido.validate}" value="#{ServicioCliente.clienteEdicion.apellido}"/>

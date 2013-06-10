@@ -345,17 +345,16 @@ public class EditarTipoVivienda extends AbstractPageBean {
      * @return the proyectos
      */
     public ArrayList<SelectItem> getProyectos() {
-        if(proyectos.isEmpty()){
-            proyectos.add(new SelectItem("", "--Seleccione--"));
-            
-            List<Proyecto> lista = getServicioProyecto().listarProyectos();
-            for (Iterator<Proyecto> it = lista.iterator(); it.hasNext();) {
-                Proyecto p = it.next();
-                proyectos.add(new SelectItem(p.getId(), p.getNombre()));
-            }
 
-            
+        proyectos = new ArrayList<SelectItem>();
+        proyectos.add(new SelectItem("", "--Seleccione--"));
+
+        List<Proyecto> lista = getServicioProyecto().listarProyectos();
+        for (Iterator<Proyecto> it = lista.iterator(); it.hasNext();) {
+            Proyecto p = it.next();
+            proyectos.add(new SelectItem(p.getId(), p.getNombre()));
         }
+
         return proyectos;
     }
 

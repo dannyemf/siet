@@ -27,9 +27,9 @@ public class EmpleadoDAO extends Dao {
     }
 
     public static void main(String... args){
-        Empleado e = new EmpleadoDAO().buscarPorCedula("lenninl");
-        e.setClave(EncrypUtil.encriptar("thisall"));
-        new EmpleadoDAO().guardar(e);
+        String id ="form:xxxm:lll";
+
+        System.out.println(id.substring(0,id.indexOf(":")));
     }
 
 	public Empleado buscarPorLogin(Object login) {
@@ -105,6 +105,7 @@ public class EmpleadoDAO extends Dao {
     public Empleado buscarPorCedula(Object usuario) {
         //info ("Buscando instancia de Usuario con cédula: " + cedula);
         beginTransaction();
+        getSession().clear();
 		Criteria criteria = getSession().createCriteria(Empleado.class);
         criteria.setLockMode(LockMode.UPGRADE);
         criteria.add(Restrictions.like(USUARIO, usuario == null ? "" : usuario.toString()));
@@ -140,12 +141,14 @@ public class EmpleadoDAO extends Dao {
         }
 	}
 
-    public Empleado buscarPorCedulaER(Object cedula) {
+    public Empleado buscarPorCedulaER(Object cedula, Empleado current) {
         //info ("Buscando instancia de Usuario con cédula: " + cedula);
         beginTransaction();
 		Criteria criteria = getSession().createCriteria(Empleado.class);
         criteria.setLockMode(LockMode.UPGRADE);
-        criteria.add(Restrictions.like(CEDULA, cedula.toString()));
+        criteria.add(Restrictions.eq(CEDULA, cedula.toString()));
+        criteria.add(Restrictions.ne("id", current.getId()));
+        
         try {
           Empleado us = (Empleado)criteria.uniqueResult();
           commit();

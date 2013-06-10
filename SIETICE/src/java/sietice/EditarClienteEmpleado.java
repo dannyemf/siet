@@ -8,18 +8,11 @@ package sietice;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import java.util.ArrayList;
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.validator.LengthValidator;
-import javax.faces.validator.ValidatorException;
 import siet.servicio.ServicioProyecto;
 import siet.servicio.ServicioEmpleado;
 import siet.servicio.ServicioCliente;
-import siet.util.EncrypUtil;
-import siet.util.StringUtil;
 
 /**
  * <p>Page bean that corresponds to a similarly named JSP page.  This
@@ -33,10 +26,7 @@ import siet.util.StringUtil;
  * @author Desarrollador
  */
 
-public class EditarClienteEmpleado extends AbstractPageBean {
-
-    private String clave = "";
-    private String confirmclave = "";
+public class EditarClienteEmpleado extends AbstractPageBean {   
 
     // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
 
@@ -130,7 +120,7 @@ public class EditarClienteEmpleado extends AbstractPageBean {
      */
     public EditarClienteEmpleado() {
     }
-    private String mensajecedula="";
+    
     /**
      * <p>Callback method that is called whenever a page is navigated to,
      * either directly via a URL, or indirectly via page navigation.
@@ -166,31 +156,15 @@ public class EditarClienteEmpleado extends AbstractPageBean {
         // *after* managed components are initialized
         // TODO - add your own initialization code here
     }
-private ArrayList<SelectItem> estadoCivil;
-    private ArrayList<SelectItem> sexo;
 
     public ArrayList<SelectItem> getEstadoCivil() {
-        estadoCivil = new ArrayList<SelectItem>();
-        estadoCivil.add(new SelectItem("SOLTERO", "Soltero"));
-        estadoCivil.add(new SelectItem("CASADO", "Casado"));
-         estadoCivil.add(new SelectItem("VIUDO", "Viudo"));
-        estadoCivil.add(new SelectItem("DIVORCIADO", "Divorciado"));
-        return estadoCivil;
-    }
-    public void setEstadoCivil(ArrayList<SelectItem> estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
+        return getServicioCliente().getEstadoCivil();
+    }   
 
     public ArrayList<SelectItem> getSexo() {
-        sexo = new ArrayList<SelectItem>();
-        sexo.add(new SelectItem("M","Masculino"));
-        sexo.add(new SelectItem("F","Femenino"));
-        return sexo;
+        return getServicioCliente().getSexo();
     }
-
-    public void setSexo(ArrayList<SelectItem> sexo) {
-        this.sexo = sexo;
-    }
+    
     /**
      * <p>Callback method that is called after the component tree has been
      * restored, but before any event processing takes place.  This method
@@ -254,113 +228,17 @@ private ArrayList<SelectItem> estadoCivil;
     public  ServicioCliente getServicioCliente() {
         return (ServicioCliente) getBean("ServicioCliente");
     }
-
-    public void txtcedula_validate(FacesContext context, UIComponent component, Object value) {
-        boolean b = ServicioCliente.validarCedula(value.toString());
-        if(!b){
-            FacesMessage m = new FacesMessage("Cedula incorrecta");
-            throw new ValidatorException(m);
-        }
-    }
-
-    public void txtcelular_validate(FacesContext context, UIComponent component, Object value) {
-       // boolean b = ServicioCliente.validarCedula(value.toString());
-            if(value.toString().length()< 9){
-                FacesMessage m = new FacesMessage(" Error Número de Celular incompleto");
-                throw new ValidatorException(m);
-            }
-
-
-    }
-
-    public boolean isRenderConfirmClave(){
-        if(StringUtil.isNullOrEmpty(clave)){
-            return false;
-        }
-        return true;
-    }
-
+    
     public String btnaceptar_action() {
-        // TODO: Process the button click action. Return value is a navigation
-        if(!StringUtil.isNullOrEmpty(clave)){
-            getServicioCliente().getClienteEdicion().setClave(EncrypUtil.encriptar(getClave()));
-        }
+        // TODO: Process the button click action. Return value is a navigation        
         getServicioCliente().guardar();// case name where null will return to the same page.
         return "case1";
-    }
-
-    public void clave_validate(FacesContext context, UIComponent component, Object value) {
-        if(!StringUtil.isNullOrEmpty(value) && value.toString().trim().length() < 5){
-            FacesMessage fm = new FacesMessage("Longitud mínima de 5 caracteres");
-            throw new ValidatorException(fm);
-        }
-    }
-
-    public void confclave_validate(FacesContext context, UIComponent component, Object value) {
-        Object clave = ((UIInput)component.getParent().findComponent("formEditCli:secretclave")).getValue();
-
-        if(StringUtil.isNullOrEmpty(value) && !StringUtil.isNullOrEmpty(clave)){
-            FacesMessage fm = new FacesMessage("Por favor confirme la clave");
-            throw new ValidatorException(fm);
-        }
-
-        if(!StringUtil.isNullOrEmpty(value) && value.toString().trim().length() < 5){
-            FacesMessage fm = new FacesMessage("Longitud mínima de 5 caracteres");
-            throw new ValidatorException(fm);
-        }
-
-        if(!StringUtil.isNullOrEmpty(value) && value.equals(clave) == false){
-            FacesMessage fm = new FacesMessage("Por favor confirme la clave con el mismo valor");
-            throw new ValidatorException(fm);
-        }
-    }
-
-    /**
-     * @return the mensajecedula
-     */
-    public String getMensajecedula() {
-        return mensajecedula;
-    }
-
-    /**
-     * @param mensajecedula the mensajecedula to set
-     */
-    public void setMensajecedula(String mensajecedula) {
-        this.mensajecedula = mensajecedula;
-    }
+    }    
 
     public String btn_volver1_action() {
         //return null means stay on the same page
         return "case-vol";
-    }
-
-    /**
-     * @return the clave
-     */
-    public String getClave() {
-        return clave;
-    }
-
-    /**
-     * @param clave the clave to set
-     */
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    /**
-     * @return the confirmclave
-     */
-    public String getConfirmclave() {
-        return confirmclave;
-    }
-
-    /**
-     * @param confirmclave the confirmclave to set
-     */
-    public void setConfirmclave(String confirmclave) {
-        this.confirmclave = confirmclave;
-    }
+    }    
 
 }
 

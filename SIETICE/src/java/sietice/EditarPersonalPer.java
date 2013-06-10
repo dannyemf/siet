@@ -7,16 +7,13 @@
 package sietice;
 
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
+import java.util.ArrayList;
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.validator.ValidatorException;
+import javax.faces.model.SelectItem;
+import javax.faces.validator.LengthValidator;
 import siet.servicio.ServicioCliente;
 import siet.servicio.ServicioEmpleado;
 import siet.servicio.ServicioProyecto;
-
 
 /**
  * <p>Page bean that corresponds to a similarly named JSP page.  This
@@ -26,6 +23,7 @@ import siet.servicio.ServicioProyecto;
  * to respond to incoming events.</p>
  */
 public class EditarPersonalPer extends AbstractPageBean {
+
     // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
     private int __placeholder;
 
@@ -35,10 +33,20 @@ public class EditarPersonalPer extends AbstractPageBean {
      * here is subject to being replaced.</p>
      */
     private void _init() throws Exception {
+        lengthValidatordoapellido.setMaximum(30);
+        lengthValidatordoapellido.setMinimum(3);
+        lengthValidatorapellido.setMaximum(30);
+        lengthValidatornombre.setMaximum(30);
+        lengthValidatornombre.setMinimum(3);
+        lengthValidatorcelular.setMaximum(9);
+        lengthValidatorcelular.setMinimum(9);
+        lengthValidatorclave.setMaximum(15);
+        lengthValidatorusuario.setMaximum(15);
+        lengthValidatorclave.setMinimum(5);
+        lengthValidatorusuario.setMinimum(5);
     }
 
     // </editor-fold>
-
     /**
      * <p>Construct a new Page bean instance.</p>
      */
@@ -64,7 +72,7 @@ public class EditarPersonalPer extends AbstractPageBean {
         // Perform application initialization that must complete
         // *before* managed components are initialized
         // TODO - add your own initialiation code here
-            
+
         // <editor-fold defaultstate="collapsed" desc="Managed Component Initialization">
         // Initialize automatically managed components
         // *Note* - this logic should NOT be modified
@@ -72,77 +80,97 @@ public class EditarPersonalPer extends AbstractPageBean {
             _init();
         } catch (Exception e) {
             log("EditarPersonalPer Initialization Failure", e);
-            throw e instanceof FacesException ? (FacesException) e: new FacesException(e);
+            throw e instanceof FacesException ? (FacesException) e : new FacesException(e);
         }
-        
-        // </editor-fold>
-        // Perform application initialization that must complete
-        // *after* managed components are initialized
-        // TODO - add your own initialization code here
+
+    // </editor-fold>
+    // Perform application initialization that must complete
+    // *after* managed components are initialized
+    // TODO - add your own initialization code here
     }
 
-    /**
-     * <p>Callback method that is called after the component tree has been
-     * restored, but before any event processing takes place.  This method
-     * will <strong>only</strong> be called on a postback request that
-     * is processing a form submit.  Customize this method to allocate
-     * resources that will be required in your event handlers.</p>
-     */
-    @Override
-    public void preprocess() {
+    private LengthValidator lengthValidatordoapellido = new LengthValidator();
+
+    public LengthValidator getLengthValidatordoapellido() {
+        return lengthValidatordoapellido;
     }
 
-    /**
-     * <p>Callback method that is called just before rendering takes place.
-     * This method will <strong>only</strong> be called for the page that
-     * will actually be rendered (and not, for example, on a page that
-     * handled a postback and then navigated to a different page).  Customize
-     * this method to allocate resources that will be required for rendering
-     * this page.</p>
-     */
-    @Override
-    public void prerender() {
+    public void setLengthValidatordoapellido(LengthValidator lv) {
+        this.lengthValidatordoapellido = lv;
+    }
+    private LengthValidator lengthValidatorapellido = new LengthValidator();
+
+    public LengthValidator getLengthValidatorapellido() {
+        return lengthValidatorapellido;
     }
 
-    /**
-     * <p>Callback method that is called after rendering is completed for
-     * this request, if <code>init()</code> was called (regardless of whether
-     * or not this was the page that was actually rendered).  Customize this
-     * method to release resources acquired in the <code>init()</code>,
-     * <code>preprocess()</code>, or <code>prerender()</code> methods (or
-     * acquired during execution of an event handler).</p>
-     */
-    @Override
-    public void destroy() {
+    public void setLengthValidatorapellido(LengthValidator lv) {
+        this.lengthValidatorapellido = lv;
     }
-     protected ServicioProyecto getServicioProyecto() {
+    private LengthValidator lengthValidatornombre = new LengthValidator();
+
+    public LengthValidator getLengthValidatornombre() {
+        return lengthValidatornombre;
+    }
+
+    public void setLengthValidatornombre(LengthValidator lv) {
+        this.lengthValidatornombre = lv;
+    }
+    private LengthValidator lengthValidatorcelular = new LengthValidator();
+
+    public LengthValidator getLengthValidatorcelular() {
+        return lengthValidatorcelular;
+    }
+
+    public void setLengthValidatorcelular(LengthValidator lv) {
+        this.lengthValidatorcelular = lv;
+    }
+    private LengthValidator lengthValidatorclave = new LengthValidator();
+
+    public LengthValidator getLengthValidatorclave() {
+        return lengthValidatorclave;
+    }
+
+    public void setLengthValidatorclave(LengthValidator lv) {
+        this.lengthValidatorclave = lv;
+    }
+    private LengthValidator lengthValidatorusuario = new LengthValidator();
+
+    public LengthValidator getLengthValidatorusuario() {
+        return lengthValidatorusuario;
+    }
+
+    public void setLengthValidatorusuario(LengthValidator lv) {
+        this.lengthValidatorusuario = lv;
+    }
+
+    public ArrayList<SelectItem> getSexo(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getSexo();
+    }
+
+    public ArrayList<SelectItem> getEstadoCivil(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getEstadoCivil();
+    }
+
+    public ArrayList<SelectItem> getRol(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getRol();
+    }
+
+    public ArrayList<SelectItem> getEstado(){
+        return ((ServicioEmpleado)getBean("ServicioEmpleado")).getEstado();
+    }
+
+    protected ServicioProyecto getServicioProyecto() {
         return (ServicioProyecto) getBean("ServicioProyecto");
     }
 
-    public  ServicioCliente getServicioCliente() {
+    public ServicioCliente getServicioCliente() {
         return (ServicioCliente) getBean("ServicioCliente");
     }
 
-     public  ServicioEmpleado getServicioEmpleado() {
+    public ServicioEmpleado getServicioEmpleado() {
         return (ServicioEmpleado) getBean("ServicioEmpleado");
-    }
-
-    public void txtcedula_validate(FacesContext context, UIComponent component, Object value) {
-        boolean b = ServicioEmpleado.validarCedula(value.toString());
-        if(!b){
-            FacesMessage m = new FacesMessage("Cedula incorrecta");
-            throw new ValidatorException(m);
-        }
-    }
-
-     public void txtcelular_validate(FacesContext context, UIComponent component, Object value) {
-       // boolean b = ServicioCliente.validarCedula(value.toString());
-            if(value.toString().length()< 9){
-                FacesMessage m = new FacesMessage(" Error Número de Celular incompleto");
-                throw new ValidatorException(m);
-            }
-
-    }
+    }    
 
     /**
      * <p>Return a reference to the scoped data bean.</p>
@@ -154,16 +182,46 @@ public class EditarPersonalPer extends AbstractPageBean {
     }
 
     public String btnaceptar_action() {
-      getServicioEmpleado().guardar();
+        getServicioEmpleado().guardar();
         return "case-aceptar";
     }
 
     public String btncancelar_action() {
         //return null means stay on the same page
+        getServicioEmpleado().setEmpleadoEdicion(null);
         return "ca-cancelar";
     }
 
-    public void drpdownrol_processValueChange(ValueChangeEvent vce) {
+    /**
+     * <p>Callback method that is called after the component tree has been
+     * restored, but before any event processing takes place.  This method
+     * will <strong>only</strong> be called on a postback request that
+     * is processing a form submit.  Customize this method to allocate
+     * resources that will be required in your event handlers.</p>
+     */
+    public void preprocess() {
+    }
+
+    /**
+     * <p>Callback method that is called just before rendering takes place.
+     * This method will <strong>only</strong> be called for the page that
+     * will actually be rendered (and not, for example, on a page that
+     * handled a postback and then navigated to a different page).  Customize
+     * this method to allocate resources that will be required for rendering
+     * this page.</p>
+     */
+    public void prerender() {
+    }
+
+    /**
+     * <p>Callback method that is called after rendering is completed for
+     * this request, if <code>init()</code> was called (regardless of whether
+     * or not this was the page that was actually rendered).  Customize this
+     * method to release resources acquired in the <code>init()</code>,
+     * <code>preprocess()</code>, or <code>prerender()</code> methods (or
+     * acquired during execution of an event handler).</p>
+     */
+    public void destroy() {
     }
 
 }

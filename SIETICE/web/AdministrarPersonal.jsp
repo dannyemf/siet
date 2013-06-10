@@ -28,17 +28,16 @@
                                     <ice:inputText id="txt_Buscar1" style="margin: 2px; height: 30px; left: 20%; top: 50px; position: absolute; width: 60%" value="#{AdministrarPersonal.apellido}"/>
                                     <ice:commandButton action="#{AdministrarPersonal.btn_Buscar1_action}" id="btn_Buscar1" image="/resources/buscarwhite.png"
                                         style="height: 37px; left: 20%; top: 100px; position: absolute; width: 60%" value="BUSCAR"/>
-                                    
                                     <ice:commandButton action="#{AdministrarPersonal.btnvolver_action}" id="btnvolver" image="/resources/volverok.png"
                                         style="height: 38px; left: 20%; top: 150px; position: absolute; width: 60%" value="PANEL DE CONTROL"/>
                                 </ice:panelLayout>
-                                 <ice:panelLayout id="panelLayout22" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0);background-color: rgb(48, 67, 87); top: 52%; height: 50%; position: absolute; width: 25%">
-                                     <ice:outputLabel id="outputLabel15"
+                                <ice:panelLayout id="panelLayout22" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0);background-color: rgb(48, 67, 87); top: 52%; height: 50%; position: absolute; width: 25%">
+                                    <ice:outputLabel id="outputLabel15"
                                         style="color: rgb(255, 255, 255); left: 0px; top: 20px; position: absolute; text-align: center; width: 100%" value="                    Crear Nuevo Empleado"/>
-                                 <ice:commandButton action="#{AdministrarPersonal.bntnuevoempleado_action}" id="bntnuevoempleado"
+                                    <ice:commandButton action="#{AdministrarPersonal.bntnuevoempleado_action}" id="bntnuevoempleado"
                                         image="/resources/nuevoEwhit.png"
                                         style="height: 38px; left: 20%; top: 60px; position: absolute; text-align: center; width: 60%" value="NUEVO EMPLEADO"/>
-                                 </ice:panelLayout>
+                                </ice:panelLayout>
                                 <div align="center">
                                     <ice:outputLabel id="label1"
                                         style="font-size: 18px; left: 25%; top: 30px; position: absolute; text-align: center; width: 717px" value="DATOS DEL PERSONAL REGISTRADO EN EL SISTEMA"/>

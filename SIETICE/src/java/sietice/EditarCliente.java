@@ -183,23 +183,7 @@ private ArrayList<SelectItem> estadoCivil;
         return (ServicioCliente) getBean("ServicioCliente");
     }
 
-    public void txtcedula_validate(FacesContext context, UIComponent component, Object value) {
-        boolean b = ServicioCliente.validarCedula(value.toString());
-        if(!b){
-            FacesMessage m = new FacesMessage("Cedula incorrecta");
-            throw new ValidatorException(m);
-        }
-    }
     
-    public void txtcelular_validate(FacesContext context, UIComponent component, Object value) {
-       // boolean b = ServicioCliente.validarCedula(value.toString());
-            if(value.toString().length()< 9){
-                FacesMessage m = new FacesMessage(" Error Número de Celular incompleto");
-                throw new ValidatorException(m);
-            }
-
-
-    }
     public String btnaceptar_action() {
 
         if(!StringUtil.isNullOrEmpty(clave)){

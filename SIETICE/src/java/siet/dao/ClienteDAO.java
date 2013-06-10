@@ -113,6 +113,27 @@ public class ClienteDAO extends Dao {
         }
 	}
 
+    public Cliente buscarPorCedulaCR(Object cedula, Cliente cli) {
+        //info ("Buscando instancia de Usuario con cédula: " + cedula);
+        beginTransaction();
+		Criteria criteria = getSession().createCriteria(Cliente.class);
+        criteria.setLockMode(LockMode.UPGRADE);
+        criteria.add(Restrictions.eq(CEDULA, cedula == null  ? "" : cedula.toString()));
+        criteria.add(Restrictions.ne("id", cli.getId()));
+
+        try {
+          Cliente us = (Cliente)criteria.uniqueResult();
+          commit();
+          //info ("Búsqueda exitosa");
+          return us;
+        } catch (Exception e) {
+            //error ("Error de búsqueda: " + e);
+            return null;
+        }finally{
+            closeSession();
+        }
+	}
+
     public Cliente buscarPorClave(Object clave) {
        beginTransaction();
 		Criteria criteria = getSession().createCriteria(Cliente.class);
