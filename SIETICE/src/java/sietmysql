@@ -1,0 +1,33 @@
+#!/bin/bash
+host=$2
+port=$3
+db=$4
+user=$5
+password=$6
+file=$7
+
+case $1 in
+"respaldar")
+mysqldump --host=$host --port=$port --user=$user --password=$password $db > "$file" 2> /dev/null
+if [ $? = 0 ]
+then
+echo "Se ha respaldado la base de datos $db correctamente..."
+else
+echo "No se ha podio realiar el respaldo..."
+echo "Revisar la lista de parámetros..."
+fi
+;;
+"restaurar")
+mysql --host=$host --port=$port --user=$user --password=$password $db < $file
+if [ $? = 0 ]
+then
+echo "Se ha restaurado la base de datos $db correctamente..."
+else
+echo "No se ha podio restaurar la base de datos $db"
+echo "Revisar la lista de parámetrso"
+fi
+;;
+*)
+echo "Opción no soportada, solo puede seleccionar "respaldar" y "restaurar""
+;;
+esac

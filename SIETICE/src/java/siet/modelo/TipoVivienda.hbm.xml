@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/05/2010 10:15:52 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="siet" name="siet.modelo.TipoVivienda" table="TipoVivienda">
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="siet.modelo.Proyecto" fetch="select" lazy="false" name="proyecto">
+      <column name="proyecto" not-null="true"/>
+    </many-to-one>
+    <property name="tipo" type="string">
+      <column length="10" name="Tipo" unique="true"/>
+    </property>
+    <property name="estructura" type="string">
+      <column length="30" name="Estructura"/>
+    </property>
+    <property name="cubierta" type="string">
+      <column length="10" name="Cubierta"/>
+    </property>
+    <property name="piso" type="string">
+      <column length="10" name="Piso"/>
+    </property>
+    <property name="cielorazo" type="string">
+      <column length="30" name="CieloRazo"/>
+    </property>
+    <property name="puertas" type="string">
+      <column length="10" name="Puertas"/>
+    </property>
+    <property name="ventanas" type="string">
+      <column length="40" name="Ventanas"/>
+    </property>
+    <property name="paredes" type="string">
+      <column name="Paredes"/>
+    </property>
+    <property name="revestido" type="string">
+      <column name="Revestido"/>
+    </property>
+    <property name="presupuesto" type="double">
+      <column name="Presupuesto"/>
+    </property>
+    <property name="plano" type="string">
+      <column name="plano"/>
+    </property>
+    <property name="valormetro" type="double">
+      <column name="valormetro"/>
+    </property>
+    <property name="area" type="double">
+      <column name="area"/>
+    </property>
+    <property name="ambientes" type="string">
+      <column length="150" name="ambientes"/>
+    </property>
+  </class>
+</hibernate-mapping>

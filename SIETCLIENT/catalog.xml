@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8085/SIETIF/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8085/SIETIF/SietWS.wsdl"/>
+    <system systemId="http://localhost:8085/SIETIF/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8085/SIETIF/SietWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8084/SIETIF/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETIF/SietWS.wsdl"/>
+    <system systemId="http://localhost:8084/SIETIF/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETIF/SietWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8082/SIETIF/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8082/SIETIF/SietWS.wsdl"/>
+    <system systemId="http://localhost:8082/SIETIF/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8082/SIETIF/SietWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8084/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SietWS.wsdl"/>
+    <system systemId="http://localhost:8084/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SietWS.xsd_1.xsd"/>
+    <system systemId="http://www.entidadsucasapropia.com/SIETICE/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/www.entidadsucasapropia.com/SIETICE/SietWS.wsdl"/>
+    <system systemId="http://www.entidadsucasapropia.com:80/SIETICE/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/www.entidadsucasapropia.com_80/SIETICE/SietWS.xsd_1.xsd"/>
+    <nextCatalog catalog="nbproject/private/cache/retriever/catalog.xml"/>
+    <system systemId="http://localhost:8084/SIETICE/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETICE/SietWS.wsdl"/>
+    <system systemId="http://localhost:8084/SIETICE/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETICE/SietWS.xsd_1.xsd"/>
+</catalog>

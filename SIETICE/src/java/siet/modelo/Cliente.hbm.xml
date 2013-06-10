@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/05/2010 10:15:52 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="siet" name="siet.modelo.Cliente" table="cliente">
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="Id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="ci" type="string">
+      <column check="true" length="10" name="CI" not-null="true" unique="true"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="30" name="nombre"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="30" name="apellido"/>
+    </property>
+    <property name="apellidodos" type="string">
+      <column length="30" name="apellidodos"/>
+    </property>
+    <property name="celular" type="string">
+      <column length="9" name="celular"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="50" name="direccion"/>
+    </property>
+    <property name="sexo" type="string">
+      <column name="sexo"/>
+    </property>
+    <property name="fechaNac" type="date">
+      <column name="fechaNac"/>
+    </property>
+    <property name="clave" type="string">
+      <column length="100" name="clave"/>
+    </property>
+    <property name="estadoCivil" type="string">
+      <column length="15" name="EstadoCivil"/>
+    </property>
+  </class>
+</hibernate-mapping>

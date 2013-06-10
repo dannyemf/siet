@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/siet</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">wplk158</property>
+    <!-- Mapeos-->
+    <!-- configuration pool via c3p0 -->
+    <property name="c3p0.acquire_increment">1</property> <property name="c3p0.idle_test_period">100</property><!-- seconds --><property name="c3p0.max_size">100</property> <property name="c3p0.max_statements">0</property> <property name="c3p0.min_size">10</property> <property name="c3p0.timeout">100</property><!-- seconds -->
+    <mapping resource="siet/modelo/Cliente.hbm.xml"/>
+    <mapping resource="siet/modelo/Empleado.hbm.xml"/>
+    <mapping resource="siet/modelo/Documentacion.hbm.xml"/>
+    <mapping resource="siet/modelo/Proyecto.hbm.xml"/>
+    <mapping resource="siet/modelo/ProyectoCliente.hbm.xml"/>
+    <mapping resource="siet/modelo/TipoVivienda.hbm.xml"/>
+    <mapping resource="siet/modelo/Auditoria.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

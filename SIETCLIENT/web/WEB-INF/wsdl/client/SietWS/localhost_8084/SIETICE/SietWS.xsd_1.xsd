@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.4-b01-. --><xs:schema xmlns:tns="http://service.web.siet/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.web.siet/">
+
+<xs:element name="aprobar" type="tns:aprobar"></xs:element>
+
+<xs:element name="aprobarResponse" type="tns:aprobarResponse"></xs:element>
+
+<xs:element name="logear" type="tns:logear"></xs:element>
+
+<xs:element name="logearResponse" type="tns:logearResponse"></xs:element>
+
+<xs:element name="obtenerProyectos" type="tns:obtenerProyectos"></xs:element>
+
+<xs:element name="obtenerProyectosResponse" type="tns:obtenerProyectosResponse"></xs:element>
+
+<xs:element name="rechazar" type="tns:rechazar"></xs:element>
+
+<xs:element name="rechazarResponse" type="tns:rechazarResponse"></xs:element>
+
+<xs:complexType name="rechazar">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"></xs:element>
+<xs:element name="observacion" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="rechazarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="aprobar">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"></xs:element>
+<xs:element name="observacion" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="aprobarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerProyectos">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerProyectosResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="logear">
+<xs:sequence>
+<xs:element name="usuario" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="clave" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="logearResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

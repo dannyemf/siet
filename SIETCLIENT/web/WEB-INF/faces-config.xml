@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<faces-config version="1.2" 
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <application>
+        <view-handler>
+            org.icefaces.netbeans.rave.web.ui.appbase.faces.ViewHandlerImpl
+        </view-handler>
+        <message-bundle>mensajes</message-bundle>
+
+        <resource-bundle>
+            <base-name>conf</base-name>
+            <var>conf</var>
+        </resource-bundle>
+
+    </application>
+
+    <managed-bean>
+        <managed-bean-name>ServicioProyecto</managed-bean-name>
+        <managed-bean-class>sietclient.ServicioProyecto</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>Inicio</managed-bean-name>
+        <managed-bean-class>sietclient.Inicio</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>RequestBean1</managed-bean-name>
+        <managed-bean-class>sietclient.RequestBean1</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ApplicationBean1</managed-bean-name>
+        <managed-bean-class>sietclient.ApplicationBean1</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>Proyectos</managed-bean-name>
+        <managed-bean-class>sietclient.Proyectos</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/Inicio.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>case-login</from-outcome>
+            <to-view-id>/Proyectos.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Proyectos.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>case-cerrar</from-outcome>
+            <to-view-id>/Inicio.jsp</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>case-ver</from-outcome>
+            <to-view-id>/Ver.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>Ver</managed-bean-name>
+        <managed-bean-class>sietclient.Ver</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/Ver.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>case-atras</from-outcome>
+            <to-view-id>/Proyectos.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>Page12</managed-bean-name>
+        <managed-bean-class>sietclient.Page12</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+</faces-config>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8084/SIETIF/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETIF/SietWS.wsdl"/>
+    <system systemId="http://localhost:8084/SIETIF/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8084/SIETIF/SietWS.xsd_1.xsd"/>
+    <nextCatalog catalog="nbproject/private/cache/retriever/catalog.xml"/>
+    <system systemId="http://localhost:8082/SIETICE/SietWS?wsdl" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8082/SIETICE/SietWS.wsdl"/>
+    <system systemId="http://localhost:8082/SIETICE/SietWS?xsd=1" uri="src/conf/xml-resources/web-service-references/SietWS/wsdl/localhost_8082/SIETICE/SietWS.xsd_1.xsd"/>
+</catalog>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/05/2010 10:15:52 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="siet" name="siet.modelo.Empleado" table="empleado">
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="cedula" type="string">
+      <column length="10" name="cedula" unique="true"/>
+    </property>
+    <property name="nombres" type="string">
+      <column length="50" name="nombres"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="50" name="apellido"/>
+    </property>
+    <property name="apellidodos" type="string">
+      <column length="50" name="apellidodos"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="9" name="telefono"/>
+    </property>
+    <property name="fechaNac" type="date">
+      <column name="fechaNac"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="150" name="direccion"/>
+    </property>
+    <property name="celular" type="string">
+      <column length="9" name="Celular"/>
+    </property>
+    <property name="usuario" type="string" unique="true">
+      <column length="15" name="usuario"/>
+    </property>
+    <property name="clave" type="string">
+      <column length="100" name="clave"/>
+    </property>
+    <property name="rol" type="string">
+      <column length="15" name="rol"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="15" name="estado"/>
+    </property>
+    <property name="estadocivil" type="string">
+      <column length="15" name="estadocivil"/>
+    </property>
+    <property name="fechaRegistro" type="date">
+      <column name="fechaRegistro"/>
+    </property>
+  </class>
+</hibernate-mapping>

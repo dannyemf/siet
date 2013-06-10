@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/05/2010 10:15:52 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="siet" name="siet.modelo.ProyectoCliente" table="proyecto_cliente">
+    <id name="id" type="java.lang.Long" unsaved-value="-1">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="siet.modelo.Cliente" fetch="select" lazy="false" name="propietario">
+      <column name="propietario" not-null="true"/>
+    </many-to-one>
+    <property name="ubicacion" type="string">
+      <column length="250" name="ubicacion"/>
+    </property>
+    <property name="presupuesto" type="double">
+      <column name="presupuesto"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="50" name="estado"/>
+    </property>
+    <property name="avance" type="string">
+      <column length="15" name="avance"/>
+    </property>
+    <property name="fechaCreacion" type="date">
+      <column name="fechaCreacion"/>
+    </property>
+    <property name="fechaEntrega" type="date">
+      <column name="fechaEntrega"/>
+    </property>
+    <property name="observacion" type="string">
+      <column length="250" name="observacion"/>
+    </property>
+    <many-to-one class="siet.modelo.TipoVivienda" fetch="select" lazy="false" name="tipoVivienda">
+      <column name="tipoVivienda" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="siet.modelo.Empleado" fetch="select" lazy="false" name="residente">
+      <column name="residente"/>
+    </many-to-one>
+    <many-to-one class="siet.modelo.Proyecto" fetch="select" lazy="false" name="proyecto">
+      <column name="proyecto"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>
