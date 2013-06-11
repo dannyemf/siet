@@ -9,8 +9,8 @@
     <f:view>
         <html id="outputHtml1">
             <head id="outputHead1">
-                <ice:outputStyle href="./resources/stylesheet.css" id="outputStyle1"/>
-                <ice:outputStyle href="./xmlhttp/css/xp/xp.css" id="outputStyle2"/>
+                <ice:outputStyle href="./xmlhttp/css/rime/rime.css" id="outputStyle2"/>
+                <ice:outputStyle href="./resources/stylesheet.css" id="outputStyle1"/>                
             </head>
             <body id="outputBody1" style="-rave-layout: grid">
                 <ice:form id="form1">
@@ -40,7 +40,40 @@
                                             style="top: 250px; height:30px; width:200px" type="button"/>
                                     </div>
                                 </ice:panelLayout>
+
+                                 <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
+                                            <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                            title="Ayuda reportes"/>
+                                </ice:panelGrid>
+
                             </ice:panelLayout>
+
+                            <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Reportes"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 500px">
+                                        <p><b>Reportes</b></p>
+
+                                        <p>En esta sección se lista los reportes disponibles:</p>
+
+                                        <ol>
+                                            <li><b>Proyectos aprobados.- </b> Son todos los trámites de los clientes con un visto bueno</li>
+                                            <li><b> Proyectos rechazados.- </b>Son todos los trámites que no han cumplido los requerimientos</li>
+                                        </ol>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>

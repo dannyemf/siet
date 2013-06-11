@@ -77,11 +77,48 @@
                                 <ice:commandButton action="#{Registrarcliente.btnvolver1_action}" id="btnvolver1" image="/resources/btnVolver.png"
                                     immediate="true" partialSubmit="true" style="height: 46px; left: 120px; top: 480px; position: absolute; width: 144px" value="VOLVER"/>
                                 <ice:commandButton action="#{Registrarcliente.btnaceptar_action}" id="btnaceptar" image="/resources/btnAceptar.png"
-                                    style="height: 48px; left: 672px; top: 480px; position: absolute; width: 142px" value="Aceptar"/>
-                                <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" label="Ayuda" mimeType="application/pdf"
-                                    resource="#{LoginCliente.recursoAyuda}" shared="true" style="color: rgb(255, 0, 0); font-size: 20px; left: 70%; top: 25px; position: absolute; width: 406px"/>
+                                    style="height: 48px; left: 672px; top: 480px; position: absolute; width: 142px" value="Aceptar"/>                                
                                 <ice:outputText id="label11" style="left: 144px; top: 426px; position: absolute; width: 453px" value="Los campos marcados con  * son obligatorios"/>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda">
+                                    <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                    title="Ayuda datos personales"/>
+
+                                    <div title="Manual de usuario (pdf)">
+                                        <ice:outputResource id="orAyuda" attachment="false" fileName="ayuda.pdf" label="Ayuda" mimeType="application/pdf" image="/resources/helppdf_button.png"
+                                        resource="#{LoginCliente.recursoAyuda}" shared="true"/>
+                                    </div>
+                                </ice:panelGrid>
+                                
                             </ice:panelLayout>
+
+                            <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Datos personales"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 400px">
+                                        <p><b>Datos personales</b></p>
+
+                                        <p>Por favor ingrese todos los datos requeridos, los mismos que están marcados con un asterisco.</p>
+
+                                        <br/>
+
+                                        <p><b>Nota:</b> Ingrese una clave de por lo menos cinco caracteres, de preferencia que combine letras y números.</p>
+
+                                        <p><b>Importante:</b> La clave que ingresa debe ser fácil de recordar. Anótela en un lugar seguro ya que la misma le servirá para ingresar al sistema.</p>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>

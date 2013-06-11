@@ -33,9 +33,9 @@
                                     <ice:outputLabel id="label2"
                                         style="color: rgb(255, 255, 255); font-size: 18px; left: 5%; top: 72px; position: absolute; text-align: center; width: 90%" value="OPCIONES"/>
                                     <ice:commandButton action="#{Inicio.btnclientes_action}" id="btnclientes" image="/resources/btnClientes_1.png"
-                                        style="height: 46px; left: 5%; top: 110px; position: absolute; width: 90%" value="CLIENTES"/>
+                                        style="height: 46px; left: 5%; top: 110px; position: absolute; width: 90%" title="Sección para clientes" value="CLIENTES"/>
                                     <ice:commandButton action="#{Inicio.btnpersonaltec_action}" id="btnpersonaltec" image="/resources/btnPersonal.png"
-                                        style="height: 46px; left: 5%; top: 170px; position: absolute; width: 90%" value="PERSONAL TÉCNICO"/>
+                                        style="height: 46px; left: 5%; top: 170px; position: absolute; width: 90%" title="Sección para el personal técnico" value="PERSONAL TÉCNICO"/>
                                 </ice:panelLayout>
                                 <ice:panelLayout id="panelLayout3" style="border: 1px solid rgb(204, 204, 204); background-color: rgb(48, 67, 87); height: 100%; left: 75%; top: 0px; position: absolute; text-align: center; width: 25%">
                                     <ice:commandButton action="#{Inicio.btn_mision_action}" id="btn_mision" image="/resources/btn_mision.jpg"

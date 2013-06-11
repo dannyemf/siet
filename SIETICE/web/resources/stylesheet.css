@@ -1748,7 +1748,7 @@ fieldset {
 */
 
 .icePnlPop, .icePnlTlTip {
-    color: #666666;
+    color: orange;
     border-right: 2px solid #ABABAB;
     border-top: 1px solid #ABABAB;
     border-left: 1px solid #ABABAB;
@@ -1762,17 +1762,13 @@ fieldset {
     background-color: #DDDDDD;
 }
 
-.icePnlPopHdr, .icePnlTlTipHdr {
-    background-color: #DEDEDE;
-    background-image: url( "./css-images/window_top.gif" );
-    background-position: top;
-    background-repeat: repeat-x;
+.icePnlPopHdr, .icePnlTlTipHdr {    
     height: 2.0em;
 }
 
 .icePnlPopHdr .iceOutTxt, .icePnlTlTipHdr .iceOutTxt {
-	color:#FFFFFF;
-	font-size:1.0em;
+	color: orange;
+	font-size: 12px;
 	font-weight:bold;
 	padding:4px;
 	text-align:center;
@@ -2650,3 +2646,69 @@ Disabled classes for the calendar controls
     border-bottom: 1px solid #ABABAB;
     cursor: n-resize;
 }
+
+.panelAyuda{
+    position: absolute;
+    top: 10px;
+    left: 840px;
+    border: 1px solid green;
+    background-color: #E8F5BA;
+
+    border-radius: 4px;
+    -moz-border-radius: 4px;    
+}
+
+.panelAyudaOneButton{
+    left: 880px;
+}
+
+.panelAyuda .iceCmdBtn, .panelAyuda .iceOutLnk{
+    width: 48px;
+    height: 48px;
+}
+
+.panelAyuda:hover{
+    background-color: #EFF5BA;
+}
+
+
+/* PANELPOPUP.JSPX */
+.corePopup {
+    position: absolute;
+    z-index: 1001;
+    width: 300px;
+    height: 150px;
+    top: 60%;
+    left: 40%;
+}
+
+.corePopup table {
+    width: 100%;
+}
+
+.popupBody {
+    margin-top: 25px;
+    width: 100%;
+    text-align: justify;
+    vertical-align: middle;
+
+    font-size: 12px;
+}
+
+.popupHeaderWrapper {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.popupHeaderText {
+    float: left;
+    font-size: 12px;
+    color: orange;
+}
+
+.popupHeaderImage {
+    float: right;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+/* END PANELPOPUP.JSPX */

@@ -97,7 +97,58 @@
                                         </ice:dataTable>
                                     </div>
                                 </ice:panelLayout>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
+                                            <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                            title="Ayuda auditoría"/>
+                                </ice:panelGrid>
+                                
                             </ice:panelLayout>
+
+                            <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Auditoría"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 500px">
+                                        <p><b>Auditoría</b></p>
+
+                                        <p>En esta sección se lista los logs de auditoría.</p>
+
+                                        <p>Un log de auditoría es un registro que guarda información de las acciones realizadas tanto por los empleados como por los clientes, siendo de los siguientes tipo:</p>
+
+                                        <ul>
+                                            <li>Inicio de sesión</li>
+                                            <li>Cierre de sesión</li>
+                                            <li>Creación de un registro en la base de datos</li>
+                                            <li>Modificación de un registro en la base de datos</li>
+                                            <li>Eliminación de un registro de la base de datos</li>
+                                        </ul>
+
+                                        <p>
+                                            <b>Generación del reporte</b>
+                                            <br/>
+                                            <ol>
+                                                <li>Seleccione la fecha inicial (Desde cuando quiere revisar los logs)</li>
+                                                <li>Seleccione la fecha final (Hasta cuando quiere revisar los logs)</li>
+                                                <li>Elija la acción o tipo de operación realizada sobre un registro (Dejar en todos si no desea filtrar por este campo)</li>
+                                                <li>Elija la entidad o tipo de usuario del que desee ver los logs de auditoría</li>
+                                                <li>Ingrese el número de cédula si desea ver los logs de un cliente o empleado en específico, de lo contrario dejar vacío</li>
+                                                <li>Presione el botón buscar</li>
+                                            </ol>
+                                        </p>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>

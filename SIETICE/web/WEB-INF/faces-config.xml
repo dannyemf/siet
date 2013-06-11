@@ -32,6 +32,11 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>ServicioAyuda</managed-bean-name>
+        <managed-bean-class>siet.servicio.ServicioAyuda</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>ServicioEmpleado</managed-bean-name>
         <managed-bean-class>siet.servicio.ServicioEmpleado</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>

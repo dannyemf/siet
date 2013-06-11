@@ -31,31 +31,45 @@
                                     style="border: 1px solid black; height: 100px; left: 60%; top: 70px; position: absolute" url="/resources/sinfoto.png" width="95"/>
                                 <ice:panelLayout id="panelLayout2" style="border-width: 1px; border-style: solid; border-color: rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255); background-color: rgb(48, 67, 87); height: 100%; left: 0px; top: 0px; position: absolute; width: 25%">
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnproyecto1_action}" id="btnproyecto1"
-                                        image="/resources/admObra.png" style="height: 45px; left: 5%; top: 198px; position: absolute; width: 90%" value="ADMINISTRAR PROYECTOS"/>
+                                        image="/resources/admObra.png" style="height: 45px; left: 5%; top: 198px; position: absolute; width: 90%"
+                                        title="Administra los trámites de los clientes" value="ADMINISTRAR PROYECTOS"/>
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnpersonal_action}" id="btnpersonal"
-                                        image="/resources/btnAdminPer.png" style="height: 45px; left: 5%; top: 102px; position: absolute; width: 90%" value="ADMINISTRAR PERSONAL"/>
+                                        image="/resources/btnAdminPer.png" style="height: 45px; left: 5%; top: 102px; position: absolute; width: 90%"
+                                        title="Administra los usuarios del sistema" value="ADMINISTRAR PERSONAL"/>
                                     <ice:outputLabel id="label2"
                                         style="background-color: rgb(48, 67, 87); color: rgb(255, 255, 255); font-size: 16px; left: 0px; top: 72px; position: absolute; text-align: center; width: 100%" value="OPCIONES :"/>
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnclienteregis_action}" id="btnclienteregis"
-                                        image="/resources/btnAdminCli.png" style="height: 45px; left: 5%; top: 150px; position: absolute; width: 90%" value="ADMINISTRAR CLIENTES"/>
+                                        image="/resources/btnAdminCli.png" style="height: 45px; left: 5%; top: 150px; position: absolute; width: 90%"
+                                        title="Administra la información de los clientes registrados" value="ADMINISTRAR CLIENTES"/>
                                     <ice:commandButton action="#{PaginaAdministradorSistema.admintipovivienda_action}" id="admintipovivienda"
-                                        image="/resources/btnTiposVivi.png" style="height: 45px; left: 5%; top: 246px; position: absolute; width: 90%" value="Administrar Tipos de Vivienda"/>
+                                        image="/resources/btnTiposVivi.png" style="height: 45px; left: 5%; top: 246px; position: absolute; width: 90%"
+                                        title="Administra los tipos de vivienda asociados a un proyecto" value="Administrar Tipos de Vivienda"/>
                                     <ice:graphicImage id="graphicImage2" style="left: 48px; top: 312px; position: absolute" value="/resources/stugan.gif"/>
                                 </ice:panelLayout>
                                 <ice:panelLayout id="panelLayout3" style="border: 1px solid rgb(204, 204, 204); background-color: #304357; height: 100%; left: 75%; top: 0px; position: absolute; width: 25%">
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnAuditoria_action}" id="btnAuditoria"
-                                        image="/resources/btnAuditoriai.png" style="height: 45px; left: 5%; top: 72px; position: absolute; width: 90%" value="Generar Reportes"/>
+                                        image="/resources/btnAuditoriai.png" style="height: 45px; left: 5%; top: 72px; position: absolute; width: 90%"
+                                        title="Generación de reportes de logs de auditoría" value="Generar Reportes"/>
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnGenerarReportes_action}" id="btnGenerarReportes"
-                                        image="/resources/btnGeneRepor.png" style="height: 45px; left: 5%; top: 120px; position: absolute; width: 90%" value="Generar Reportes"/>
+                                        image="/resources/btnGeneRepor.png" style="height: 45px; left: 5%; top: 120px; position: absolute; width: 90%"
+                                        title="Generación de reportes de trámites" value="Generar Reportes"/>
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnRespaldos_action}" id="btnRespaldos"
-                                        image="/resources/btnRespaldos.png" style="height: 45px; left: 5%; top: 168px; position: absolute; width: 90%" value="RESPALDOS"/>
+                                        image="/resources/btnRespaldos.png" style="height: 45px; left: 5%; top: 168px; position: absolute; width: 90%"
+                                        title="Creación, eliminación y restauración de la base de datos" value="RESPALDOS"/>
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnsalir_action}" id="btnsalir" image="/resources/cerrarcesion.png"
-                                        style="height: 45px; left: 5%; top: 264px; position: absolute; width: 90%" value="SALIR"/>
+                                        style="height: 45px; left: 5%; top: 264px; position: absolute; width: 90%" title="Salir del sistema de forma segura" value="SALIR"/>
                                     <ice:commandButton action="#{PaginaAdministradorSistema.btnProyectos_action}" id="btnProyectos"
-                                        image="/resources/btnProyectosEjecu.png" style="height: 45px; left: 5%; top: 216px; position: absolute; width: 90%" value="PROYECTO EJECUCION"/>
-                                    <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" label="Ayuda" mimeType="application/pdf"
-                                        resource="#{PaginaAdministradorSistema.recursoAyuda}" shared="true" style="color: rgb(255, 0, 0); font-size: 14px; left: 10px; top: 25px; position: absolute; width: 100px"/>
+                                        image="/resources/btnProyectosEjecu.png" style="height: 45px; left: 5%; top: 216px; position: absolute; width: 90%"
+                                        title="Administración de los proyectos" value="PROYECTO EJECUCION"/>
                                 </ice:panelLayout>
+                                
+                                <ice:panelGrid columns="2" styleClass="panelAyuda" style="left: 810px">
+                                    <div title="Manual de usuario (pdf)">
+                                        <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" image="/resources/helppdf_button.png"
+                                            label="Ayuda" mimeType="application/pdf" resource="#{PaginaAdministradorSistema.recursoAyuda}" shared="true"/>
+                                    </div>
+                                </ice:panelGrid>
+
                                 <ice:graphicImage id="graphicImage3" style="height: 280px; left: 30%; top: 200px; position: absolute; width: 40%" value="/resources/page_admin.png"/>
                             </ice:panelLayout>
                         </div>

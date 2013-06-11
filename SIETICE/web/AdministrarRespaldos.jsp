@@ -136,7 +136,39 @@
                                             </ice:dataPaginator>
                                     
                                 </ice:panelLayout>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
+                                            <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                            title="Ayuda respaldos"/>
+                                </ice:panelGrid>
+                                
                             </ice:panelLayout>
+
+                            <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Respaldos"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 500px">
+                                        <p><b>Respaldos.- </b>Un respaldo es un archivo que guarda tanto la estructura como la data de la base de datos sobre la que está operando este sistema.</p>
+
+                                        <p><b>Creación de un respaldo.- </b>Para crear un respaldo presione el botón "crear respaldos" y listo. El respaldo será creado a la fecha actual y si desea listarlo ingrese como fecha final la fecha actual y presione buscar</p>
+
+                                        <p><b>Eliminar un respaldo.- </b>Para eliminar simplemente seleccione el vínculo eliminar de la lista de respaldos. Tenga precación de esta acción ya que si elimina el respaldo ya no podrá hacer una restauración posterior a menos que lo haga manualmente</p>
+
+                                        <p><b>Restaurar un respaldo.- </b>La restauración no es otra cosa que volver la base de datos al estado seleccionado. Haga ésta operación si está completamente seguro de lo que está haciendo y no olvide crear un respaldo antes de restaurar. Tome en cuenta que si hace una restauración a una fecha anterior puede perder registros de la base de datos creados posteriormente a la fecha del respaldo.</p>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>

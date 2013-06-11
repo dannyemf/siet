@@ -16,9 +16,13 @@
             <body id="body1" style="-rave-layout: grid">
                 <ice:form id="form1">
                     <ice:panelLayout id="panetodo" style="border-width: 0px; border-style: dotted; height: 100%; left: 0px; top: 0px; position: absolute; width: 100%">
-                        <ice:panelLayout id="panecabeza" style="border-width: 0px; border-style: dotted; height: 100px; left: 0%; top: 0%; position: relative; width: 960px">
-                            <ice:graphicImage height="100%" id="graphicImage1" value="/resources/cabeza.jpg" width="100%"/>
-                        </ice:panelLayout>
+                        <div align="center">
+                            <ice:panelLayout id="panecabeza" style="border-width: 0px; border-style: dotted; height: 100px; left: 0%; top: 0%; position: relative; width: 960px">
+                                <ice:graphicImage height="100%" id="graphicImage1" value="/resources/cabeza.jpg" width="100%"/>
+                            </ice:panelLayout>
+                        </div>
+
+                        <div align="center">
                         <ice:panelLayout id="panecuerpo" style="border: 1px solid #999999; height: 470px; left: 0%; top: 5px; position: relative; width: 960px">
                             <ice:outputLabel id="label2" style="left: 15%; top: 72px; position: absolute" value="Titular : "/>
                             <ice:outputLabel id="label5" style="left: 50%; top: 120px; position: absolute; width: 119px" value="Presupuesto:"/>
@@ -57,8 +61,51 @@
                             </ice:selectOneMenu>
                             <ice:outputLabel id="label4" style="left: 15%; top: 312px; position: absolute" value="Proyecto:"/>
                             <ice:outputLabel id="label9" style="left: 15%; top: 120px; position: absolute" value="Encargado: "/>
+
+                            <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
+                                        <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                        title="Ayuda obra"/>
+                            </ice:panelGrid>
+                            
                         </ice:panelLayout>
+
+                        </div>
+
+                        <!-- Panel Popup Ayuda -->
+                        <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                            <f:facet name="header">
+                                <ice:panelGroup styleClass="popupHeaderWrapper">
+                                    <ice:outputText styleClass="popupHeaderText" value="Ayuda - Obras"/>
+                                    <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                        image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                </ice:panelGroup>
+                            </f:facet>
+                            <f:facet name="body">
+                                <ice:panelGroup styleClass="popupBody" style="width: 400px">
+                                    <p><b>Obras</b></p>
+
+                                    <p>Esta página sirve para modificar principalmente la siguiente información:</p>
+
+                                    <ol>
+                                        <li>Encargado del proyecto</li>
+                                        <li>Ubicación</li>
+                                        <li>Estado del proyecto</li>
+                                        <li>Avance del proyecto</li>
+                                    </ol>
+
+                                    <p>
+                                        <b>Nota: </b>Por favor manipular esta información con mucho cuidado ya que se puede afectar al cliente.
+                                    </p>
+
+                                    <center>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                    </center>
+                                </ice:panelGroup>
+                            </f:facet>
+                        </ice:panelPopup>
+                        
                     </ice:panelLayout>
+                    
                 </ice:form>
             </body>
         </html>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Scene Scope="Project" version="2">
+<?xml version="1.0" encoding="UTF-8"?><Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="AdministrarPersonal.jsp" x="1259" y="173" zoom="false"/>
@@ -15,13 +14,13 @@
         <Node id="AdministrarProyectoCliente.jsp" x="713" y="436" zoom="false"/>
         <Node id="LoginPersonal.jsp" x="1225" y="356" zoom="false"/>
         <Node id="PaginaAdministradorSistema.jsp" x="967" y="30" zoom="false"/>
-        <Node id="AdministrarTiposVivienda.jsp" x="650" y="560" zoom="false"/>
         <Node id="TipoVivienda.jsp" x="146" y="-29" zoom="false"/>
+        <Node id="AdministrarTiposVivienda.jsp" x="650" y="560" zoom="false"/>
         <Node id="Inicio.jsp" x="990" y="554" zoom="false"/>
         <Node id="LoginAdmin.jsp" x="981" y="324" zoom="false"/>
         <Node id="Registrarcliente.jsp" x="346" y="572" zoom="false"/>
-        <Node id="AdministrarProyecto.jsp" x="1309" y="-35" zoom="false"/>
         <Node id="EditarClienteEmpleado.jsp" x="936" y="981" zoom="false"/>
+        <Node id="AdministrarProyecto.jsp" x="1309" y="-35" zoom="false"/>
         <Node id="EditClienteCli.jsp" x="68" y="508" zoom="false"/>
         <Node id="Meta.jsp" x="1217" y="467" zoom="false"/>
         <Node id="Page1.jsp" x="400" y="150" zoom="true"/>
@@ -32,8 +31,8 @@
         <Node id="PaginaCliente.jsp" x="341" y="196" zoom="false"/>
         <Node id="EditarProyectoCliente.jsp" x="902" y="707" zoom="false"/>
         <Node id="EditarCliente.jsp" x="63" y="221" zoom="false"/>
-        <Node id="EditarProyecto.jsp" x="1700" y="-8" zoom="false"/>
         <Node id="PaginaResultadoProyectoCli.jsp" x="-178" y="156" zoom="false"/>
+        <Node id="EditarProyecto.jsp" x="1700" y="-8" zoom="false"/>
         <Node id="Ayuda_Cli.jsp" x="400" y="300" zoom="true"/>
         <Node id="EditarPersonalPer.jsp" x="1244" y="805" zoom="false"/>
         <Node id="PaginaAuditoria.jsp" x="550" y="197" zoom="false"/>

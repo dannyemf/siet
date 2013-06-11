@@ -90,10 +90,44 @@
                                                     <h:outputText id="outputText15" value="Editar"/>
                                                 </f:facet>
                                             </h:column>
-                                        </ice:dataTable>
+                                        </ice:dataTable>                                        
                                     </div>
                                 </ice:panelLayout>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
+                                            <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                            title="Ayuda clientes"/>
+                                </ice:panelGrid>
+                                
                             </ice:panelLayout>
+
+                           <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Cliente"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 400px">
+                                        <p><b>Cliente</b></p>
+
+                                        <p>Un cliente es la persona que se ha registrado en el sistema con la finalidad de acceder a uno de nuestros los proyectos.</p>
+
+                                        <p>El cliente se registra en la sección de clientes, por lo que aquí únicamente se puede verificar y editar sus datos personales</p>
+
+                                        <p>Para una búsqueda más precisa ingrese el apellido del cliente y presione buscar</p>
+
+                                        <p><b>Nota: </b>Si desea cambiar la clave del cliente puede ingresar por el icono editar</p>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>

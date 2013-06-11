@@ -31,7 +31,8 @@
                                 <div align="center">
                                     <ice:outputLabel id="label1"
                                         style="font-size: 18px; left: 25%; top: 30px; position: absolute; text-align: center; width: 717px" value="LISTA DE PROYECTOS"/>
-                                </div>
+                                </div>                                
+
                                 <ice:panelLayout id="panelLayout55" style="border: 0px solid rgb(0, 0, 0); height: 75%; left: 30%; top: 70px; position: absolute; width: 65%">
                                     <div align="center" style="overflow:auto; width:auto; height:260px">
                                         <ice:dataTable headerClass="list-header" id="dataTable1" rowClasses="list-row-even,list-row-odd"
@@ -72,10 +73,46 @@
                                             </h:column>
                                            
                                         </ice:dataTable>
-                                    </div>
+                                    </div>                                    
+                                
                                 </ice:panelLayout>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda">
+                                    <ice:commandButton actionListener="#{ServicioAyuda.showPopup}" id="btnAyuda" image="/resources/help_button.png"
+                                        immediate="true" title="Ayuda" value="Ayuda"/>
+                                    <div title="Manual de usuario (pdf)">
+                                        <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" image="/resources/helppdf_button.png"
+                                        label="Ayuda" mimeType="application/pdf" resource="#{PaginaAdministradorSistema.recursoAyuda}" shared="true"/>
+                                    </div>
+                                </ice:panelGrid>
+                                
                             </ice:panelLayout>
                         </div>
+
+                        <!-- Panel Popup Ayuda -->
+                        <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                            <f:facet name="header">
+                                <ice:panelGroup styleClass="popupHeaderWrapper">
+                                    <ice:outputText styleClass="popupHeaderText" value="Ayuda - Proyecto"/>
+                                    <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                        image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                </ice:panelGroup>
+                            </f:facet>
+                            <f:facet name="body">
+                                <ice:panelGroup styleClass="popupBody" style="width: 400px">
+                                    <p><b>Proyecto.- </b>Un proyecto es un conjunto habitacional en el que existen varios tipos de viviendas</p>
+
+                                    <p>En ésta página se listan los proyectos (conjuntos habitacionales)</p>
+
+                                    <p>También puede crear un nuevo proyecto o bien editar uno ya existente</p>
+
+                                    <center>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                    </center>
+                                </ice:panelGroup>
+                            </f:facet>
+                        </ice:panelPopup>
+                        
                     </ice:panelLayout>
                 </ice:form>
             </body>

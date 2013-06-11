@@ -86,7 +86,7 @@
                                 <ice:outputLabel id="lblPlano" style="left: 84px; top: 264px; position: absolute; width: 45px" value="Plano"/>
                                 <ice:commandButton action="#{EditarTipoVivienda.btncancelar_action}" id="btncancelar" image="/resources/btnVolver.png"
                                     immediate="true" style="height: 48px; left: 30%; top: 780px; position: absolute; width: 15%" value="CANCELAR"/>
-                                <ice:outputLabel id="label6" style="left: 84px; top: 156px; position: absolute; width: 81px" value="Area : ( m2)"/>
+                                <ice:outputLabel id="label6" style="left: 84px; top: 156px; position: absolute; width: 105px" value="Area : ( m2)"/>
                                 <ice:inputText id="txtrarea" onchange="toEntero(this);" onkeyup="toEntero(this);" partialSubmit="true"
                                     style="height: 23px; left: 214px; top: 154px; position: absolute; width: 143px" value="#{ServicioVivienda.tipoViviendaEdicion.area}"/>
                                 <ice:selectOneMenu id="dropparedes" partialSubmit="true" style="left: 562px; top: 670px; position: absolute; width: 95px" value="#{ServicioVivienda.tipoViviendaEdicion.paredes}">
@@ -101,7 +101,7 @@
                                 <ice:outputLabel id="label17" style="left: 84px; top: 336px; position: absolute" value="Ambientes :"/>
                                 <ice:inputTextarea id="textAmbientes"
                                     style="font-size: 14px; height: 144px; left: 82px; top: 370px; position: absolute; width: 275px" value="#{TipoVivienda.servicioVivienda.tipoViviendaEdicion.ambientes}"/>
-                                <ice:outputLabel id="label18" style="left: 84px; top: 192px; position: absolute; width: 93px" value="Valor por m²:"/>
+                                <ice:outputLabel id="label18" style="left: 84px; top: 192px; position: absolute; width: 117px" value="Valor por m²:"/>
                                 <ice:inputText id="txtrvalormetro" onchange="toEntero(this);" onkeyup="toEntero(this);" partialSubmit="true"
                                     style="height: 23px; left: 214px; top: 190px; position: absolute; width: 143px" value="#{ServicioVivienda.tipoViviendaEdicion.valormetro}"/>
                                 <!--width="216"/&gt;/-->
@@ -114,8 +114,48 @@
                                 </ice:selectOneMenu>
                                 <ice:message for="txttipoV" id="msgNom" style="height: 22px; left: 372px; top: 84px; position: absolute; width: 141px"/>
                                 <ice:message for="somProy" id="msgProy" style="left: 372px; top: 120px; position: absolute; width: 141px"/>
+                                <ice:panelGrid columns="2" styleClass="panelAyuda">
+                                    <ice:commandButton actionListener="#{ServicioAyuda.showPopup}" id="btnAyuda" image="/resources/help_button.png"
+                                        immediate="true" title="Ayuda tipo vivienda" value="Ayuda"/>
+                                    <div title="Manual de usuario (pdf)">
+                                        <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" image="/resources/helppdf_button.png"
+                                            label="Ayuda" mimeType="application/pdf" resource="#{PaginaAdministradorSistema.recursoAyuda}" shared="true"/>
+                                    </div>
+                                </ice:panelGrid>
                             </ice:panelLayout>
                         </div>
+                        <!-- Panel Popup Ayuda -->
+                        <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                            <f:facet name="header">
+                                <ice:panelGroup styleClass="popupHeaderWrapper">
+                                    <ice:outputText styleClass="popupHeaderText" value="Ayuda - Tipo vivienda"/>
+                                    <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                        image="/resources/popupclose.gif" immediate="true" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                </ice:panelGroup>
+                            </f:facet>
+                            <f:facet name="body">
+                                <ice:panelGroup style="width: 400px" styleClass="popupBody">
+                                    <p>
+                                        <b>Tipo de vivienda</b>
+                                    </p>
+                                    <p>En ésta página usted pude elejir las características del tipo de vivienda</p>
+                                    <p>Ingrese el número de metros cuadrados de construcción, el valor por metro cuadrado e inmediatamente se calculará el presupuesto</p>
+                                    <p><b>Ambientes: </b>En este campo ingrese un texto descriptivo de la estructura del tipo de vivienda, como por ejemplo:</p>
+                                    <ul>
+                                        <li>3 Dormitorios</li>
+                                        <li>2 baños</li>
+                                        <li>1 baño master</li>
+                                        <li>1 sala</li>
+                                        <li>1 comedor</li>
+                                        <li>1 cocina</li>
+                                        <li>Patio trasero</li>
+                                    </ul>
+                                    <center>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" id="modalPnlCloseButton" immediate="true" type="submit" value="Cerrar"/>
+                                    </center>
+                                </ice:panelGroup>
+                            </f:facet>
+                        </ice:panelPopup>
                     </ice:panelLayout>
                 </ice:form>
             </body>

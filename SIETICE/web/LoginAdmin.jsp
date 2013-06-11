@@ -35,7 +35,7 @@
                                     style="left: 166px; top: 70px; position: absolute; width: 120px" value="#{LoginAdmin.clave}"/>
                                 <h:outputText id="outputText1" style="color: rgb(255, 0, 0); left: 24px; top: 100px; position: absolute;Width: 237px" value="#{LoginAdmin.mensaje}"/>
                                 <ice:commandButton action="#{LoginAdmin.btnvolveradm1_action}" id="btnvolveradm1" image="/resources/btnInicio_1.png"
-                                    partialSubmit="true" style="height: 45px; left: 24px; top: 120px; position: absolute; width: 120px" value="submit"/>
+                                    immediate="true" partialSubmit="true" style="height: 45px; left: 24px; top: 120px; position: absolute; width: 120px" value="submit"/>
                                 <ice:commandButton action="#{LoginAdmin.btningresar1_action}" id="btningresar1" image="/resources/btnIngreso123.png"
                                     style="height: 45px; left: 168px; top: 120px; position: absolute; width: 120px" value="submit"/>
                             </ice:panelLayout>

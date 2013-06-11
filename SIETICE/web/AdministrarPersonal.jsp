@@ -112,7 +112,38 @@
                                         </ice:dataTable>
                                     </div>
                                 </ice:panelLayout>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
+                                    <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                    title="Ayuda personal"/>
+                                </ice:panelGrid>
                             </ice:panelLayout>
+
+                            <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Personal"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 400px">
+                                        <p><b>Personal</b></p>
+
+                                        <p>El personal son las personas que trabajan en esta institución y el personal de encargado de la aprobación de los trámites.</p>                                       
+
+                                        <p>Para buscar una búsqueda más precisa introduzca el apellido en la caja de texto de la izquierda y presione el botón buscar.</p>
+
+                                        <p>Si necesita registrar un empleado de click en el botón nuevo empleado de la parte izquierda.</p>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>

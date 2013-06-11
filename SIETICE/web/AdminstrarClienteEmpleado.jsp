@@ -24,7 +24,7 @@
                             <ice:panelLayout id="panecuerpo" style="border: 1px solid rgb(0, 51, 51); height: 470px; left: 0%; top: 5px; position: relative; width: 960px">
                                 <ice:panelLayout id="panelLayout2" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0); background-color: rgb(48, 67, 87); height: 100%; position: absolute; width: 25%">
                                     <ice:outputLabel id="outputLabel1"
-                                        style="color: rgb(255, 255, 255); top: 20px; position: absolute; text-align: center; width: 100%" value=" Buscar por Apellido"/>
+                                        style="color: rgb(255, 255, 255); left: 30px; top: 20px; position: absolute; text-align: left; width: 165px" value=" Buscar por Apellido"/>
                                     <ice:inputText id="txt_Buscar" style="margin: 2px; height: 30px; left: 20%; top: 50px; position: absolute; width: 60%" value="#{AdminstrarClienteEmpleado.apellido}"/>
                                     <ice:commandButton action="#{AdminstrarClienteEmpleado.btn_Buscar_action}" id="btn_Buscar"
                                         image="/resources/buscarwhite.png"
@@ -36,8 +36,16 @@
                                     <ice:outputLabel id="label1"
                                         style="font-size: 18px; left: 25%; top: 30px; position: absolute; text-align: center; width: 719px" value="DATOS DE CLIENTES REGISTRADOS EN EL SISTEMA"/>
                                 </div>
-                                <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" label="Ayuda" mimeType="application/pdf"
-                                    resource="#{PaginaEmpleado.recursoAyuda}" shared="true" style="color: rgb(255, 0, 0); font-size: 20px; left: 80%; top: 25px; position: absolute; width: 406px"/>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda">
+                                    <ice:commandButton actionListener="#{ServicioAyuda.showPopup}" id="btnAyuda" image="/resources/help_button.png"
+                                        immediate="true" title="Ayuda clientes" value="Ayuda"/>
+                                    <div title="Manual de usuario (pdf)">
+                                        <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" image="/resources/helppdf_button.png"
+                                            label="Ayuda" mimeType="application/pdf" resource="#{PaginaEmpleado.recursoAyuda}" shared="true"/>
+                                    </div>
+                                </ice:panelGrid>
+
                                 <ice:panelLayout id="panelLayout55" style="border: 0px solid rgb(0, 0, 0); height: 80%; left: 30%; top: 70px; position: absolute; width: 65%">
                                     <div align="center" style="overflow:auto; width:auto; height:260px">
                                         <ice:dataTable headerClass="list-header" id="dataTable1" rowClasses="list-row-even,list-row-odd"
@@ -94,7 +102,6 @@
                                                     <h:outputText id="outputText15" value="Editar"/>
                                                 </f:facet>
                                             </h:column>
-                                          
                                             <!-- h:column id="column9">
                                 outputText id="outputText18" value={c.direcion}"/>
                                 f:facet name="header">
@@ -103,8 +110,37 @@
                             /h:column> -->
                                         </ice:dataTable>
                                     </div>
-                                </ice:panelLayout>
+                                </ice:panelLayout>                                
+                            
                             </ice:panelLayout>
+
+                            <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Cliente"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 400px">
+                                        <p><b>Cliente</b></p>
+
+                                        <p>Un cliente es la persona que se ha registrado en el sistema con la finalidad de acceder a uno de nuestros los proyectos.</p>
+
+                                        <p>El cliente se registra en la sección de clientes, por lo que aquí únicamente se puede verificar y editar sus datos personales</p>
+
+                                        <p>Para una búsqueda más precisa ingrese el apellido del cliente y presione buscar</p>
+
+                                        <p><b>Nota: </b>Si desea cambiar la clave del cliente puede ingresar por el icono editar</p>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>

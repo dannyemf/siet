@@ -100,7 +100,39 @@
                                         </ice:dataTable>
                                     </div>
                                 </ice:panelLayout>
+
+                                <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
+                                            <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
+                                            title="Ayuda Tipo Vivienda"/>
+                                </ice:panelGrid>
+
                             </ice:panelLayout>
+
+                            <!-- Panel Popup Ayuda -->
+                            <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
+                                <f:facet name="header">
+                                    <ice:panelGroup styleClass="popupHeaderWrapper">
+                                        <ice:outputText styleClass="popupHeaderText" value="Ayuda - Tipo Vivienda"/>
+                                        <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" alt="Cerrar" id="modalPnlCloseBtn"
+                                            image="/resources/popupclose.gif" styleClass="popupHeaderImage" title="Cerrar" type="button"/>
+                                    </ice:panelGroup>
+                                </f:facet>
+                                <f:facet name="body">
+                                    <ice:panelGroup styleClass="popupBody" style="width: 400px">
+                                        <p><b>Tipo Vivienda</b></p>
+
+                                        <p>Un tipo de vivienda es cada una de las diferentes distribuciones de espacios físicos, estructuras, tipos de materiales empleados, etc., por lo que cada tipo de vivienda tendrá un presupuesto diferente.</p>
+
+                                        <p>Cada tipo de vivienda está asociado a un conjunto habitacional o proyecto.</p>
+
+                                        <p>Para crear un nuevo tipo de vivienda seleccione el botón "Nuevo Tipo de Vivienda" del panel izquierdo.</p>
+
+                                        <center>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                        </center>
+                                    </ice:panelGroup>
+                                </f:facet>
+                            </ice:panelPopup>
                         </div>
                     </ice:panelLayout>
                 </ice:form>
