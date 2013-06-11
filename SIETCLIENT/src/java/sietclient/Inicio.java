@@ -6,7 +6,6 @@
  */
 package sietclient;
 
-import com.icesoft.faces.component.jsfcl.data.DefaultTableDataModel;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import javax.faces.FacesException;
 

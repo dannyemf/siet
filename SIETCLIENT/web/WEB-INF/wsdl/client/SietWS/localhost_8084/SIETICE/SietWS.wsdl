@@ -4,11 +4,11 @@
 <xsd:import namespace="http://service.web.siet/" schemaLocation="http://localhost:8084/SIETICE/SietWS?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
-<message name="logear">
-<part name="parameters" element="tns:logear"></part>
+<message name="rechazar">
+<part name="parameters" element="tns:rechazar"></part>
 </message>
-<message name="logearResponse">
-<part name="parameters" element="tns:logearResponse"></part>
+<message name="rechazarResponse">
+<part name="parameters" element="tns:rechazarResponse"></part>
 </message>
 <message name="obtenerProyectos">
 <part name="parameters" element="tns:obtenerProyectos"></part>
@@ -22,16 +22,16 @@
 <message name="aprobarResponse">
 <part name="parameters" element="tns:aprobarResponse"></part>
 </message>
-<message name="rechazar">
-<part name="parameters" element="tns:rechazar"></part>
+<message name="logear">
+<part name="parameters" element="tns:logear"></part>
 </message>
-<message name="rechazarResponse">
-<part name="parameters" element="tns:rechazarResponse"></part>
+<message name="logearResponse">
+<part name="parameters" element="tns:logearResponse"></part>
 </message>
 <portType name="SietWS">
-<operation name="logear">
-<input message="tns:logear"></input>
-<output message="tns:logearResponse"></output>
+<operation name="rechazar">
+<input message="tns:rechazar"></input>
+<output message="tns:rechazarResponse"></output>
 </operation>
 <operation name="obtenerProyectos">
 <input message="tns:obtenerProyectos"></input>
@@ -41,14 +41,14 @@
 <input message="tns:aprobar"></input>
 <output message="tns:aprobarResponse"></output>
 </operation>
-<operation name="rechazar">
-<input message="tns:rechazar"></input>
-<output message="tns:rechazarResponse"></output>
+<operation name="logear">
+<input message="tns:logear"></input>
+<output message="tns:logearResponse"></output>
 </operation>
 </portType>
 <binding name="SietWSPortBinding" type="tns:SietWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
-<operation name="logear">
+<operation name="rechazar">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>
@@ -75,7 +75,7 @@
 <soap:body use="literal"></soap:body>
 </output>
 </operation>
-<operation name="rechazar">
+<operation name="logear">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

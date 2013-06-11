@@ -9,7 +9,7 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/siet</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.password">wplk158</property>
     <!--
     <property name="hibernate.connection.password">wplk158</property>
     -->
