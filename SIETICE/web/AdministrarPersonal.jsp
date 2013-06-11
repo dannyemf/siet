@@ -31,7 +31,7 @@
                                     <ice:commandButton action="#{AdministrarPersonal.btnvolver_action}" id="btnvolver" image="/resources/volverok.png"
                                         style="height: 38px; left: 20%; top: 150px; position: absolute; width: 60%" value="PANEL DE CONTROL"/>
                                 </ice:panelLayout>
-                                <ice:panelLayout id="panelLayout22" style="border-width: 1px; border-style: solid; border-color: rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0);background-color: rgb(48, 67, 87); top: 52%; height: 50%; position: absolute; width: 25%">
+                                <ice:panelLayout id="panelLayout22" style="border: 1px solid rgb(0, 0, 0); background-color: rgb(48, 67, 87); height: 50%; top: 50%; position: absolute; width: 25%">
                                     <ice:outputLabel id="outputLabel15"
                                         style="color: rgb(255, 255, 255); left: 0px; top: 20px; position: absolute; text-align: center; width: 100%" value="                    Crear Nuevo Empleado"/>
                                     <ice:commandButton action="#{AdministrarPersonal.bntnuevoempleado_action}" id="bntnuevoempleado"
@@ -112,13 +112,11 @@
                                         </ice:dataTable>
                                     </div>
                                 </ice:panelLayout>
-
                                 <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
-                                    <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
-                                    title="Ayuda personal"/>
+                                    <ice:commandButton actionListener="#{ServicioAyuda.showPopup}" id="btnAyuda" image="/resources/help_button.png"
+                                        immediate="true" title="Ayuda personal" value="Ayuda"/>
                                 </ice:panelGrid>
                             </ice:panelLayout>
-
                             <!-- Panel Popup Ayuda -->
                             <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
                                 <f:facet name="header">
@@ -129,17 +127,16 @@
                                     </ice:panelGroup>
                                 </f:facet>
                                 <f:facet name="body">
-                                    <ice:panelGroup styleClass="popupBody" style="width: 400px">
-                                        <p><b>Personal</b></p>
-
-                                        <p>El personal son las personas que trabajan en esta institución y el personal de encargado de la aprobación de los trámites.</p>                                       
-
+                                    <ice:panelGroup style="width: 400px" styleClass="popupBody">
+                                        <p>
+                                            <b>Personal</b>
+                                        </p>
+                                        <p>El personal son las personas que trabajan en esta institución y el personal de encargado de la aprobación de los trámites.</p>
                                         <p>Para buscar una búsqueda más precisa introduzca el apellido en la caja de texto de la izquierda y presione el botón buscar.</p>
-
                                         <p>Si necesita registrar un empleado de click en el botón nuevo empleado de la parte izquierda.</p>
-
                                         <center>
-                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" id="modalPnlCloseButton" immediate="true"
+                                                partialSubmit="true" value="Cerrar"/>
                                         </center>
                                     </ice:panelGroup>
                                 </f:facet>
