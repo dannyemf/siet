@@ -58,9 +58,11 @@
                                 <ice:outputLabel id="staticText12" style="height: 24px; left: 15%; top: 216px; position: absolute; width: 118px" value="Presupuesto : "/>
                                 <ice:outputText id="outputrevestido" style="left: 30%; top: 480px; position: absolute; width: 15%" value="#{TipoVivienda.currenTipoVivienda.revestido}"/>
                                 <ice:inputText id="inputText2" readonly="true" style="height: 24px; left: 30%; top: 214px; position: absolute; width: 120px" value="#{TipoVivienda.currenTipoVivienda.presupuesto}"/>
+
                                 <ice:graphicImage alt="Plano no encontrado..." height="669" id="graphicImage11"
                                     style="color: rgb(255, 0, 0); font-weight: bold; height: 650px; left: 504px; top: 66px; position: absolute"
-                                    value="#{TipoVivienda.plano}" width="381"/>
+                                    value="#{conf.siet_files_server}/planos/#{TipoVivienda.currenTipoVivienda.plano}" width="381"/>
+
                                 <ice:message for="textArea1" id="message1" showSummary="true" style="color: rgb(255, 0, 0); left: 15%; top: 624px; position: absolute; width: 213px"/>
                                 <ice:commandButton action="#{TipoVivienda.btnvolver_action}" id="btnvolver" image="/resources/btnVolver.png" immediate="true"
                                     style="height: 48px; left: 15%; top: 650px; position: absolute; width: 15%" value="VOLVER"/>

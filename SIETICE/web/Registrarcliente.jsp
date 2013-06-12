@@ -33,19 +33,17 @@
                                 <ice:outputText id="label5" style="left: 144px; top: 234px; position: absolute; width: 15%" value="Celular: *"/>
                                 <ice:outputText id="label6" style="left: 50%; top: 144px; position: absolute" value="Estado Civil: *"/>
                                 <ice:outputText id="label7" style="left: 480px; top: 234px; position: absolute" value="Sexo: *"/>
-                                <ice:inputText id="txtcedula" maxlength="10" onchange="toEntero(this);" onkeyup="toEntero(this);" required="true"
-                                style="left: 30%; top: 94px; position: absolute" validator="#{ServicioCliente.txtcedula_validate}" value="#{ServicioCliente.clienteEdicion.ci}"/>
+                                <ice:inputText id="txtcedula" label="Cédula" maxlength="10" onchange="toEntero(this);" onkeyup="toEntero(this);" required="true"
+                                    style="left: 30%; top: 94px; position: absolute" validator="#{ServicioCliente.txtcedula_validate}" value="#{ServicioCliente.clienteEdicion.ci}"/>
                                 <ice:inputText id="txtnombre" maxlength="40" onchange="toCadena(this);" onkeyup="toCadena(this);" required="true"
                                     style="left: 30%; top: 142px; position: absolute" validator="#{Registrarcliente.lengthValidatorNombre.validate}" value="#{ServicioCliente.clienteEdicion.nombre}"/>
                                 <ice:inputText id="txtapellido" maxlength="30" onchange="toCadena(this);" onkeyup="toCadena(this);" required="true"
                                     style="left: 292px; top: 190px; position: absolute" validator="#{Registrarcliente.lengthValidatorApellido.validate}" value="#{ServicioCliente.clienteEdicion.apellido}"/>
                                 <ice:inputText id="txtapellidodos" maxlength="30" onchange="toCadena(this);" onkeyup="toCadena(this);" required="true"
                                     style="left: 676px; top: 190px; position: absolute" validator="#{Registrarcliente.lengthValidatorApellidodos.validate}" value="#{ServicioCliente.clienteEdicion.apellidodos}"/>
-                                <ice:inputText id="txtcelular" maxlength="9" onchange="toEntero(this);"
-                                    onkeyup="toEntero(this);" required="true" style="left: 292px; top: 238px; position: absolute"
-                                    validator="#{ServicioCliente.txtcelular_validate}" value="#{ServicioCliente.clienteEdicion.celular}"/>
-                                <ice:inputText id="txtdireccion" required="true"
-                                    style="left: 292px; top: 280px; position: absolute; width: 384px" value="#{ServicioCliente.clienteEdicion.direccion}"/>
+                                <ice:inputText id="txtcelular" maxlength="9" onchange="toEntero(this);" onkeyup="toEntero(this);" required="true"
+                                    style="left: 292px; top: 238px; position: absolute" validator="#{ServicioCliente.txtcelular_validate}" value="#{ServicioCliente.clienteEdicion.celular}"/>
+                                <ice:inputText id="txtdireccion" required="true" style="left: 292px; top: 280px; position: absolute; width: 384px" value="#{ServicioCliente.clienteEdicion.direccion}"/>
                                 <h:selectOneMenu id="dropestadocivil" style="height: 21px; left: 678px; top: 144px; position: absolute; width: 149px" value="#{ServicioCliente.clienteEdicion.estadoCivil}">
                                     <f:selectItems id="dropdown1SelectItems1" value="#{Registrarcliente.estadoCivil}"/>
                                 </h:selectOneMenu>
@@ -57,11 +55,13 @@
                                 <ice:outputText id="label9" style="left: 144px; top: 330px; position: absolute; width: 15%" value="Clave: *"/>
                                 <ice:outputText id="label10" style="left: 144px; top: 366px; position: absolute" value="Confirme Clave: *"/>
                                 <ice:outputText id="label15" style="left: 144px; top: 282px; position: absolute; width: 15%" value="Dirección: *"/>
-                                <ice:inputSecret id="secretclave" redisplay="true" style="left: 292px; top: 328px; position: absolute" required="true" partialSubmit="true" value="#{ServicioCliente.clave}" validator="#{ServicioCliente.clave_validate}">
+                                <ice:inputSecret id="secretclave" partialSubmit="true" redisplay="true" required="true"
+                                    style="left: 292px; top: 328px; position: absolute" validator="#{ServicioCliente.clave_validate}" value="#{ServicioCliente.clave}">
                                     <f:validateLength minimum="4"/>
                                 </ice:inputSecret>
                                 <ice:message for="secretconfclave" id="outtxtconfirmclave" showDetail="true" style="color: rgb(255, 0, 0); left: 468px; top: 366px; position: absolute; width: 285px"/>
-                                <ice:inputSecret id="secretconfclave" redisplay="true" style="left: 292px; top: 364px; position: absolute" required="true" partialSubmit="true" value="#{ServicioCliente.confirmclave}" validator="#{ServicioCliente.confclave_validate}">
+                                <ice:inputSecret id="secretconfclave" partialSubmit="true" redisplay="true" required="true"
+                                    style="left: 292px; top: 364px; position: absolute" validator="#{ServicioCliente.confclave_validate}" value="#{ServicioCliente.confirmclave}">
                                     <f:validateLength minimum="4"/>
                                 </ice:inputSecret>
                                 <ice:message for="txtapellido" id="message2" showDetail="false" showSummary="true" style="color: rgb(255, 0, 0); left: 288px; top: 168px; position: absolute; width: 167px"/>
@@ -77,21 +77,17 @@
                                 <ice:commandButton action="#{Registrarcliente.btnvolver1_action}" id="btnvolver1" image="/resources/btnVolver.png"
                                     immediate="true" partialSubmit="true" style="height: 46px; left: 120px; top: 480px; position: absolute; width: 144px" value="VOLVER"/>
                                 <ice:commandButton action="#{Registrarcliente.btnaceptar_action}" id="btnaceptar" image="/resources/btnAceptar.png"
-                                    style="height: 48px; left: 672px; top: 480px; position: absolute; width: 142px" value="Aceptar"/>                                
+                                    style="height: 48px; left: 672px; top: 480px; position: absolute; width: 142px" value="Aceptar"/>
                                 <ice:outputText id="label11" style="left: 144px; top: 426px; position: absolute; width: 453px" value="Los campos marcados con  * son obligatorios"/>
-
                                 <ice:panelGrid columns="2" styleClass="panelAyuda">
-                                    <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
-                                    title="Ayuda datos personales"/>
-
+                                    <ice:commandButton actionListener="#{ServicioAyuda.showPopup}" id="btnAyuda" image="/resources/help_button.png"
+                                        immediate="true" title="Ayuda datos personales" value="Ayuda"/>
                                     <div title="Manual de usuario (pdf)">
-                                        <ice:outputResource id="orAyuda" attachment="false" fileName="ayuda.pdf" label="Ayuda" mimeType="application/pdf" image="/resources/helppdf_button.png"
-                                        resource="#{LoginCliente.recursoAyuda}" shared="true"/>
+                                        <ice:outputResource attachment="false" fileName="ayuda.pdf" id="orAyuda" image="/resources/helppdf_button.png"
+                                            label="Ayuda" mimeType="application/pdf" resource="#{LoginCliente.recursoAyuda}" shared="true"/>
                                     </div>
                                 </ice:panelGrid>
-                                
                             </ice:panelLayout>
-
                             <!-- Panel Popup Ayuda -->
                             <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
                                 <f:facet name="header">
@@ -102,19 +98,19 @@
                                     </ice:panelGroup>
                                 </f:facet>
                                 <f:facet name="body">
-                                    <ice:panelGroup styleClass="popupBody" style="width: 400px">
-                                        <p><b>Datos personales</b></p>
-
+                                    <ice:panelGroup style="width: 400px" styleClass="popupBody">
+                                        <p>
+                                            <b>Datos personales</b>
+                                        </p>
                                         <p>Por favor ingrese todos los datos requeridos, los mismos que están marcados con un asterisco.</p>
-
                                         <br/>
-
-                                        <p><b>Nota:</b> Ingrese una clave de por lo menos cinco caracteres, de preferencia que combine letras y números.</p>
-
-                                        <p><b>Importante:</b> La clave que ingresa debe ser fácil de recordar. Anótela en un lugar seguro ya que la misma le servirá para ingresar al sistema.</p>
-
+                                        <p>
+                                            <b>Nota:</b> Ingrese una clave de por lo menos cinco caracteres, de preferencia que combine letras y números.</p>
+                                        <p>
+                                            <b>Importante:</b> La clave que ingresa debe ser fácil de recordar. Anótela en un lugar seguro ya que la misma le servirá para ingresar al sistema.</p>
                                         <center>
-                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" id="modalPnlCloseButton" immediate="true"
+                                                partialSubmit="true" value="Cerrar"/>
                                         </center>
                                     </ice:panelGroup>
                                 </f:facet>

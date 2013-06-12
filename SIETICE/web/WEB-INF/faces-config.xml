@@ -9,6 +9,11 @@
             org.icefaces.netbeans.rave.web.ui.appbase.faces.ViewHandlerImpl
         </view-handler>
          <message-bundle>mensajes</message-bundle>
+
+         <resource-bundle>
+             <base-name>conf</base-name>
+             <var>conf</var>
+         </resource-bundle>
     </application>
 
     <!-- Beans de aplicacion -->

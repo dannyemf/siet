@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.faces.FacesException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
@@ -118,7 +119,10 @@ public class EditarTipoVivienda extends AbstractPageBean {
     public String btnaceptar_action() {
         if(filePlano != null){
             HttpSession session = (HttpSession)getExternalContext().getSession(true);
-            String rutaPlanos = session.getServletContext().getRealPath("/")+"planos/";
+            //String rutaPlanos = session.getServletContext().getRealPath("/")+"planos/";
+            ResourceBundle r = ResourceBundle.getBundle("conf");
+
+            String rutaPlanos = r.getString("siet_files_path")+"/planos/";
             String nombre = new Date().getTime() + "_" + filePlano.getName();
             String newRuta = rutaPlanos + nombre;
             filePlano.renameTo(new File(newRuta));

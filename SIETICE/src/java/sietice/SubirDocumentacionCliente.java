@@ -11,6 +11,7 @@ import com.icesoft.faces.webapp.http.servlet.InterceptingServletSession;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import java.io.File;
 import java.util.Date;
+import java.util.ResourceBundle;
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -416,7 +417,11 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
     public String btnaceptar_action() {
 
          HttpSession session = (HttpSession)getExternalContext().getSession(true);
-         String rutaDocs = session.getServletContext().getRealPath("/")+"documentos/";
+         //String rutaDocs = session.getServletContext().getRealPath("/")+"documentos/";
+
+         ResourceBundle r = ResourceBundle.getBundle("conf");
+
+         String rutaDocs = r.getString("siet_files_path") + "/documentos/";
 
 
         Documentacion d = getServicioDocumentacion().getDocumentacionEdicion();

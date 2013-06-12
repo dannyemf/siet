@@ -21,7 +21,7 @@
                             </ice:panelLayout>
                         </div>
                         <div align="center">
-                            <ice:panelLayout id="panecuerpo" style="border: 1px solid rgb(0, 51, 51); height: 470px; left: 0%; top: 5px; position: relative; width: 960px">
+                            <ice:panelLayout id="panecuerpo" style="border: 1px solid rgb(0, 51, 51); height: 550px; left: 0%; top: 5px; position: relative; width: 960px">
                                 <ice:panelLayout id="panelLayout2" style="border: 1px solid rgb(0, 0, 0); background-color: rgb(48, 67, 87); height: 100%; position: absolute; width: 35%">
                                     <ice:outputLabel id="label11"
                                         style="color: white; font-size: 16px; height: 27px; left: 0px; top: 20px; position: absolute; text-align: center; width: 100%" value="Seleccionar Fecha de Respaldo"/>
@@ -48,102 +48,77 @@
                                         style="color: rgb(0, 51, 51); font-size: 18px; height: 30px; left: 36%; top: 30px; position: absolute; text-align: center; width: 64%" value="LISTA DE RESPALDOS"/>
                                 </div>
                                 <ice:panelLayout id="panelLayout55" style="border-width: 0px; border-style: solid; background-color: rgb(255, 255, 255); height: 75%; left: 36%; top: 70px; position: absolute; width: 64%">
-                                    
-                                        <ice:dataTable headerClass="list-header" id="dataTable1" rowClasses="list-row-even,list-row-odd" rows="8"
-                                            style=" width: 80%" value="#{AdministrarRespaldos.model}" var="e">
-                                            <h:column id="column11">
-                                                <h:outputText id="outputText1" value="#{e.file.name}"/>
-                                                <f:facet name="header">
-                                                    <h:outputText id="outputText2" value="Nombre"/>
-                                                </f:facet>
-                                            </h:column>
-                                            <h:column id="column2">
-                                                <h:outputText id="outputText3" value="#{e.tamaño}"/>
-                                                <f:facet name="header">
-                                                    <h:outputText id="outputText4" value="Tamaño"/>
-                                                </f:facet>
-                                            </h:column>
-                                            <h:column id="column3">
-                                                <h:outputText id="outputText5" value="#{e.fecha}">
-                                                    <f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy hh:mm:ss"/>
-                                                </h:outputText>
-                                                <f:facet name="header">
-                                                    <h:outputText id="outputText6" value="Fecha"/>
-                                                </f:facet>
-                                            </h:column>
-                                            <h:column id="column1">
-                                                <ice:panelConfirmation acceptLabel="Si" autoCentre="true" cancelLabel="No" draggable="true" id="panel_restaurar"
-                                                    message="Desea restaurar la base de datos al punto seleccionado?" rendered="true" title="Restaurar"/>
-                                                    
-                                                <ice:panelConfirmation acceptLabel="Si" autoCentre="false" cancelLabel="No" draggable="true" id="panel_eliminar"
+                                    <ice:dataTable headerClass="list-header" id="dataTable1" rowClasses="list-row-even,list-row-odd" rows="8"
+                                        style=" width: 80%" value="#{AdministrarRespaldos.model}" var="e">
+                                        <h:column id="column11">
+                                            <h:outputText id="outputText1" value="#{e.file.name}"/>
+                                            <f:facet name="header">
+                                                <h:outputText id="outputText2" value="Nombre"/>
+                                            </f:facet>
+                                        </h:column>
+                                        <h:column id="column2">
+                                            <h:outputText id="outputText3" value="#{e.tamaño}"/>
+                                            <f:facet name="header">
+                                                <h:outputText id="outputText4" value="Tamaño"/>
+                                            </f:facet>
+                                        </h:column>
+                                        <h:column id="column3">
+                                            <h:outputText id="outputText5" value="#{e.fecha}">
+                                                <f:convertDateTime dateStyle="short" pattern="dd/MM/yyyy hh:mm:ss"/>
+                                            </h:outputText>
+                                            <f:facet name="header">
+                                                <h:outputText id="outputText6" value="Fecha"/>
+                                            </f:facet>
+                                        </h:column>
+                                        <h:column id="column1">
+                                            <ice:panelConfirmation acceptLabel="Si" autoCentre="true" cancelLabel="No" draggable="true" id="panel_restaurar"
+                                                message="Desea restaurar la base de datos al punto seleccionado?" rendered="true" title="Restaurar"/>
+                                            <ice:panelConfirmation acceptLabel="Si" autoCentre="false" cancelLabel="No" draggable="true" id="panel_eliminar"
                                                 message="Desea eliminar el respaldo seleccionado?" rendered="true" title="Eliminar"/>
-
-                                                <ice:panelGrid columns="5" id="gridPanel1">
-                                                    <ice:outputResource attachment="true" fileName="#{e.file.name}" id="lnkDesc" label="Descargar"
-                                                        mimeType="text/x-sql" resource="#{e.recurso}"
-                                                        shared="false"/>
+                                            <ice:panelGrid columns="5" id="gridPanel1">
+                                                <ice:outputResource attachment="true" fileName="#{e.file.name}" id="lnkDesc" label="Descargar"
+                                                    mimeType="text/x-sql" resource="#{e.recurso}"
+                                                    shared="false"/>
                                         | <ice:commandLink
-                                                        action="#{AdministrarRespaldos.linkActionRestaurar_action}" id="linkActionRestaurar"
-                                                        panelConfirmation="panel_restaurar"
-                                                        value="Restaurar"/>
+                                                    action="#{AdministrarRespaldos.linkActionRestaurar_action}" id="linkActionRestaurar"
+                                                    panelConfirmation="panel_restaurar"
+                                                    value="Restaurar"/>
                                         | <ice:commandLink
-                                                        action="#{AdministrarRespaldos.linkActionEliminar_action}" id="linkActionEliminar"
-                                                        panelConfirmation="panel_eliminar" value="Eliminar"/>
-                                                </ice:panelGrid>
-                                                <f:facet name="header">
-                                                    <h:outputText id="outputText20" value=" Opción "/>
-                                                </f:facet>
-                                            </h:column>
-                                        </ice:dataTable>
-
-
-                                        <ice:dataPaginator id="paginator"
-                                        style=""
-                                           for="dataTable1"
-                                           fastStep="2"
-                                           paginator="true"
-                                           paginatorMaxPages="5">
-                                                <f:facet name="first">
-                                                    <h:graphicImage value="/xmlhttp/css/rime/css-images/arrow-first.gif"
-                                                                    style="width: 18px; height: 18px; border: none;"
-                                                                    alt="Primer página" title="Primer página"/>
-                                                </f:facet>
-                                                <f:facet name="last">
-                                                    <h:graphicImage value="/xmlhttp/css/rime/css-images/arrow-last.gif"
-                                                                    style="width: 18px; height: 18px; border: none;"
-                                                                    alt="Última página" title="Última página"/>
-                                                </f:facet>
-                                                <f:facet name="previous">
-                                                    <h:graphicImage value="/xmlhttp/css/rime/css-images/arrow-previous.gif"
-                                                                    style="width: 18px; height: 18px; border: none;"
-                                                                    alt="Anterior" title="Anterior"/>
-                                                </f:facet>
-                                                <f:facet name="next">
-                                                    <h:graphicImage value="/xmlhttp/css/rime/css-images/arrow-next.gif"
-                                                                    style="width: 18px; height: 18px; border: none;"
-                                                                    alt="Siguiente" title="Siguiente"/>
-                                                </f:facet>
-                                                <f:facet name="fastforward">
-                                                    <h:graphicImage value="/xmlhttp/css/rime/css-images/arrow-ff.gif"
-                                                                    style="width: 18px; height: 18px; border: none;"
-                                                                    alt="Avanzar una página" title="Avanzar una página"/>
-                                                </f:facet>
-                                                <f:facet name="fastrewind">
-                                                    <h:graphicImage value="/xmlhttp/css/rime/css-images/arrow-fr.gif"
-                                                                    style="width: 18px; height: 18px; border: none;"
-                                                                    alt="Retroceder una página" title="Retroceder una página"/>
-                                                </f:facet>
-                                            </ice:dataPaginator>
-                                    
+                                                    action="#{AdministrarRespaldos.linkActionEliminar_action}" id="linkActionEliminar"
+                                                    panelConfirmation="panel_eliminar" value="Eliminar"/>
+                                            </ice:panelGrid>
+                                            <f:facet name="header">
+                                                <h:outputText id="outputText20" value=" Opción "/>
+                                            </f:facet>
+                                        </h:column>
+                                    </ice:dataTable>
+                                    <ice:dataPaginator fastStep="2" for="dataTable1" id="paginator" paginator="true" paginatorMaxPages="5" style="">
+                                        <f:facet name="first">
+                                            <h:graphicImage alt="Primer página" style="width: 18px; height: 18px; border: none;" title="Primer página" value="/xmlhttp/css/rime/css-images/arrow-first.gif"/>
+                                        </f:facet>
+                                        <f:facet name="last">
+                                            <h:graphicImage alt="Última página" style="width: 18px; height: 18px; border: none;" title="Última página" value="/xmlhttp/css/rime/css-images/arrow-last.gif"/>
+                                        </f:facet>
+                                        <f:facet name="previous">
+                                            <h:graphicImage alt="Anterior" style="width: 18px; height: 18px; border: none;" title="Anterior" value="/xmlhttp/css/rime/css-images/arrow-previous.gif"/>
+                                        </f:facet>
+                                        <f:facet name="next">
+                                            <h:graphicImage alt="Siguiente" style="width: 18px; height: 18px; border: none;" title="Siguiente" value="/xmlhttp/css/rime/css-images/arrow-next.gif"/>
+                                        </f:facet>
+                                        <f:facet name="fastforward">
+                                            <h:graphicImage alt="Avanzar una página" style="width: 18px; height: 18px; border: none;" title="Avanzar una página" value="/xmlhttp/css/rime/css-images/arrow-ff.gif"/>
+                                        </f:facet>
+                                        <f:facet name="fastrewind">
+                                            <h:graphicImage alt="Retroceder una página" style="width: 18px; height: 18px; border: none;"
+                                                title="Retroceder una página" value="/xmlhttp/css/rime/css-images/arrow-fr.gif"/>
+                                        </f:facet>
+                                    </ice:dataPaginator>
                                 </ice:panelLayout>
-
                                 <ice:panelGrid columns="2" styleClass="panelAyuda panelAyudaOneButton">
-                                            <ice:commandButton id="btnAyuda" image="/resources/help_button.png" immediate="true" actionListener="#{ServicioAyuda.showPopup}" value="Ayuda"
-                                            title="Ayuda respaldos"/>
+                                    <ice:commandButton actionListener="#{ServicioAyuda.showPopup}" id="btnAyuda" image="/resources/help_button.png"
+                                        immediate="true" title="Ayuda respaldos" value="Ayuda"/>
                                 </ice:panelGrid>
-                                
                             </ice:panelLayout>
-
                             <!-- Panel Popup Ayuda -->
                             <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">
                                 <f:facet name="header">
@@ -154,17 +129,18 @@
                                     </ice:panelGroup>
                                 </f:facet>
                                 <f:facet name="body">
-                                    <ice:panelGroup styleClass="popupBody" style="width: 500px">
-                                        <p><b>Respaldos.- </b>Un respaldo es un archivo que guarda tanto la estructura como la data de la base de datos sobre la que está operando este sistema.</p>
-
-                                        <p><b>Creación de un respaldo.- </b>Para crear un respaldo presione el botón "crear respaldos" y listo. El respaldo será creado a la fecha actual y si desea listarlo ingrese como fecha final la fecha actual y presione buscar</p>
-
-                                        <p><b>Eliminar un respaldo.- </b>Para eliminar simplemente seleccione el vínculo eliminar de la lista de respaldos. Tenga precación de esta acción ya que si elimina el respaldo ya no podrá hacer una restauración posterior a menos que lo haga manualmente</p>
-
-                                        <p><b>Restaurar un respaldo.- </b>La restauración no es otra cosa que volver la base de datos al estado seleccionado. Haga ésta operación si está completamente seguro de lo que está haciendo y no olvide crear un respaldo antes de restaurar. Tome en cuenta que si hace una restauración a una fecha anterior puede perder registros de la base de datos creados posteriormente a la fecha del respaldo.</p>
-
+                                    <ice:panelGroup style="width: 500px" styleClass="popupBody">
+                                        <p>
+                                            <b>Respaldos.- </b>Un respaldo es un archivo que guarda tanto la estructura como la data de la base de datos sobre la que está operando este sistema.</p>
+                                        <p>
+                                            <b>Creación de un respaldo.- </b>Para crear un respaldo presione el botón "crear respaldos" y listo. El respaldo será creado a la fecha actual y si desea listarlo ingrese como fecha final la fecha actual y presione buscar</p>
+                                        <p>
+                                            <b>Eliminar un respaldo.- </b>Para eliminar simplemente seleccione el vínculo eliminar de la lista de respaldos. Tenga precación de esta acción ya que si elimina el respaldo ya no podrá hacer una restauración posterior a menos que lo haga manualmente</p>
+                                        <p>
+                                            <b>Restaurar un respaldo.- </b>La restauración no es otra cosa que volver la base de datos al estado seleccionado. Haga ésta operación si está completamente seguro de lo que está haciendo y no olvide crear un respaldo antes de restaurar. Tome en cuenta que si hace una restauración a una fecha anterior puede perder registros de la base de datos creados posteriormente a la fecha del respaldo.</p>
                                         <center>
-                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" immediate="true" partialSubmit="true" id="modalPnlCloseButton" value="Cerrar"></ice:commandButton>
+                                            <ice:commandButton actionListener="#{ServicioAyuda.closePopup}" id="modalPnlCloseButton" immediate="true"
+                                                partialSubmit="true" value="Cerrar"/>
                                         </center>
                                     </ice:panelGroup>
                                 </f:facet>

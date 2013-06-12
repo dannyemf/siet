@@ -173,11 +173,7 @@ public class ServicioProyecto extends AbstractSessionBean {
 
     
     public ProyectoCliente buscarProyectoClientePor(Cliente c){
-        List<ProyectoCliente> l= (List<ProyectoCliente>)new ProyectoDAO().buscarPorCliente(c);
-        if(l.size() > 0){
-            return l.get(0);
-        }
-        return null;
+        return new ProyectoDAO().buscarPorCliente(c);
     }
     
 

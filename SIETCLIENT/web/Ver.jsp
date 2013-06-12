@@ -97,19 +97,19 @@
                                         <ice:panelGrid columns="2" id="dridDoc">
                                             <ice:outputText id="lblImgCedula" value="Cedula"/>
                                             <ice:graphicImage alt="No cargada" height="200" id="imgCedula"
-                                            value="#{conf.server_imagenes}documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCedula}" width="200"/>
+                                            value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCedula}" width="200"/>
                                             <ice:outputText id="lblImgCert" value="Certificado"/>
                                             <ice:graphicImage alt="No cargada" height="200" id="imgCert"
-                                                value="#{conf.server_imagenes}documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCertificado}" width="200"/>
+                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCertificado}" width="200"/>
                                             <ice:outputText id="lblImgEsc" value="Escritura"/>
                                             <ice:graphicImage alt="No cargada" height="200" id="imgEsc"
-                                                value="#{conf.server_imagenes}documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgEscritura}" width="200"/>
+                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgEscritura}" width="200"/>
                                             <ice:outputText id="lblImgLib" value="Libreta"/>
                                             <ice:graphicImage alt="No cargada" height="200" id="imgLib"
-                                                value="#{conf.server_imagenes}documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgLibreta}" width="200"/>
+                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgLibreta}" width="200"/>
                                             <ice:outputText id="lblImgTerr" value="Terreno"/>
                                             <ice:graphicImage alt="No cargada" height="200" id="imgTerr"
-                                                value="#{conf.server_imagenes}documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgTerreno}" width="200"/>
+                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgTerreno}" width="200"/>
                                         </ice:panelGrid>
                                     </ice:panelTab>
                                     <ice:panelTab id="tabAp" label="Aprobar/Rechazar">
