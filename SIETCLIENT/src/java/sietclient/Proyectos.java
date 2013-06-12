@@ -11,6 +11,7 @@ import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import java.net.URL;
 import java.util.List;
 import javax.faces.FacesException;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.ArrayDataModel;
 
 
@@ -193,6 +194,10 @@ public class Proyectos extends AbstractPageBean {
         item.setContextPath(urlSietIce);
         getServicioProyecto().editar(item);
         return "case-ver";
+    }
+
+    public void btn_refreshAction(ActionEvent e){
+        listar();
     }
 }
 

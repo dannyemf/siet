@@ -7,6 +7,7 @@ package sietice;
 
 import com.icesoft.faces.component.inputfile.InputFile;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,12 +15,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.faces.FacesException;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
+import org.imgscalr.Scalr;
 import siet.modelo.Proyecto;
 import siet.servicio.*;
+import siet.util.StringUtil;
+import siet.util.ThumbailUtil;
 
 
 public class EditarTipoVivienda extends AbstractPageBean {
@@ -44,6 +50,25 @@ public class EditarTipoVivienda extends AbstractPageBean {
     private Object proyectoId;
 
     public EditarTipoVivienda() {
+    }
+
+    public void editar(siet.modelo.TipoVivienda tipo){
+        proyectoId = tipo.getProyecto() != null ? tipo.getProyecto().getId() : null;        
+
+        //Borra de cache
+        if(filePlano != null){
+            filePlano.delete();
+            filePlano = null;
+        }
+        
+        if(StringUtil.isNullOrEmpty(tipo.getPlano())){
+            nombrePlano = "/resources/no_plano.png";
+        }else{
+            ResourceBundle r = ResourceBundle.getBundle("conf");
+            String rutaPlanos = r.getString("siet_files_server")+"/planos/thumb/";
+            nombrePlano = rutaPlanos + tipo.getPlano();
+        }
+        
     }
 
  
@@ -118,14 +143,20 @@ public class EditarTipoVivienda extends AbstractPageBean {
 
     public String btnaceptar_action() {
         if(filePlano != null){
-            HttpSession session = (HttpSession)getExternalContext().getSession(true);
+            //HttpSession session = (HttpSession)getExternalContext().getSession(true);
             //String rutaPlanos = session.getServletContext().getRealPath("/")+"planos/";
-            ResourceBundle r = ResourceBundle.getBundle("conf");
 
+            ResourceBundle r = ResourceBundle.getBundle("conf");
             String rutaPlanos = r.getString("siet_files_path")+"/planos/";
+            
             String nombre = new Date().getTime() + "_" + filePlano.getName();
-            String newRuta = rutaPlanos + nombre;
+            String newRuta = rutaPlanos + nombre;            
             filePlano.renameTo(new File(newRuta));
+
+            //crear thumbail
+            String newRutaThumb = rutaPlanos + "thumb/" + nombre;
+            ThumbailUtil.crearThumbail(newRuta, newRutaThumb, 369, 232);
+            
             getServicioVivienda().getTipoViviendaEdicion().setPlano(nombre);
         }
 
@@ -278,12 +309,20 @@ public class EditarTipoVivienda extends AbstractPageBean {
 
     public void fileUploadPlano_processAction(ActionEvent ae) {
         InputFile fi = (InputFile)ae.getSource();
-        if(filePlano != null){
+        
+        if(filePlano != null && (filePlano.getName().equals(fi.getFileInfo().getFileName())) == false){
             filePlano.delete();
         }
+
         filePlano = fi.getFile();
-        this.nombrePlano = fi.getFileInfo().getFileName();
-        this.getServicioVivienda().getTipoViviendaEdicion().setPlano(this.nombrePlano);
+
+        //crear thumbail tempralmente
+        HttpSession session = (HttpSession)getExternalContext().getSession(true);
+        String rutaPlanos = session.getServletContext().getRealPath("/")+"tmpupload/thumb/";
+        String newRutaThumb = rutaPlanos + fi.getFileInfo().getFileName();
+        ThumbailUtil.crearThumbail(fi.getFile().getAbsolutePath(), newRutaThumb, 369, 232);
+        
+        this.nombrePlano = "/tmpupload/thumb/" + fi.getFileInfo().getFileName();
     }
 
     public String btncancelar_action() {
@@ -324,12 +363,7 @@ public class EditarTipoVivienda extends AbstractPageBean {
      */
     public void setRevestido(ArrayList<SelectItem> revestido) {
         this.revestido = revestido;
-    }
-
-    public String fileUploadPlano_action() {
-        //return null means stay on the same page
-        return null;
-    }
+    }    
 
     /**
      * @return the proyectoId

@@ -4,6 +4,18 @@
 <xsd:import namespace="http://service.web.siet/" schemaLocation="http://localhost:8084/SIETICE/SietWS?xsd=1"></xsd:import>
 </xsd:schema>
 </types>
+<message name="logear">
+<part name="parameters" element="tns:logear"></part>
+</message>
+<message name="logearResponse">
+<part name="parameters" element="tns:logearResponse"></part>
+</message>
+<message name="obtenerProyectos">
+<part name="parameters" element="tns:obtenerProyectos"></part>
+</message>
+<message name="obtenerProyectosResponse">
+<part name="parameters" element="tns:obtenerProyectosResponse"></part>
+</message>
 <message name="aprobar">
 <part name="parameters" element="tns:aprobar"></part>
 </message>
@@ -16,19 +28,15 @@
 <message name="rechazarResponse">
 <part name="parameters" element="tns:rechazarResponse"></part>
 </message>
-<message name="obtenerProyectos">
-<part name="parameters" element="tns:obtenerProyectos"></part>
-</message>
-<message name="obtenerProyectosResponse">
-<part name="parameters" element="tns:obtenerProyectosResponse"></part>
-</message>
-<message name="logear">
-<part name="parameters" element="tns:logear"></part>
-</message>
-<message name="logearResponse">
-<part name="parameters" element="tns:logearResponse"></part>
-</message>
 <portType name="SietWS">
+<operation name="logear">
+<input message="tns:logear"></input>
+<output message="tns:logearResponse"></output>
+</operation>
+<operation name="obtenerProyectos">
+<input message="tns:obtenerProyectos"></input>
+<output message="tns:obtenerProyectosResponse"></output>
+</operation>
 <operation name="aprobar">
 <input message="tns:aprobar"></input>
 <output message="tns:aprobarResponse"></output>
@@ -37,17 +45,27 @@
 <input message="tns:rechazar"></input>
 <output message="tns:rechazarResponse"></output>
 </operation>
-<operation name="obtenerProyectos">
-<input message="tns:obtenerProyectos"></input>
-<output message="tns:obtenerProyectosResponse"></output>
-</operation>
-<operation name="logear">
-<input message="tns:logear"></input>
-<output message="tns:logearResponse"></output>
-</operation>
 </portType>
 <binding name="SietWSPortBinding" type="tns:SietWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+<operation name="logear">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
+<operation name="obtenerProyectos">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal"></soap:body>
+</input>
+<output>
+<soap:body use="literal"></soap:body>
+</output>
+</operation>
 <operation name="aprobar">
 <soap:operation soapAction=""></soap:operation>
 <input>
@@ -58,24 +76,6 @@
 </output>
 </operation>
 <operation name="rechazar">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="obtenerProyectos">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal"></soap:body>
-</input>
-<output>
-<soap:body use="literal"></soap:body>
-</output>
-</operation>
-<operation name="logear">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal"></soap:body>

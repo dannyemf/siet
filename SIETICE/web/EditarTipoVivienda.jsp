@@ -25,7 +25,7 @@
                             </ice:panelLayout>
                         </div>
                         <div align="center">
-                            <ice:panelLayout id="panecuerpo" style="border: 1px solid rgb(153, 153, 153); height: 830px; top: 5px; position: relative; width: 960px; -rave-layout: grid">
+                            <ice:panelLayout id="panecuerpo" style="border: 1px solid rgb(153, 153, 153); height: 880px; top: 5px; position: relative; width: 960px; -rave-layout: grid">
                                 <ice:outputLabel id="label1"
                                     style="background-color: rgb(255, 255, 255); font-size: 18px; left: 0px; top: 24px; position: absolute; text-align: center; width: 100%" value="TIPOS DE MATERIALES Y ACABADOS"/>
                                 <ice:outputLabel id="label2" style="left: 564px; top: 72px; position: absolute" value="Seleccionar Estructura:"/>
@@ -72,7 +72,7 @@
                                     <f:selectItems id="dropdown1SelectItems5" value="#{EditarTipoVivienda.ventanas}"/>
                                 </ice:selectOneMenu>
                                 <ice:commandButton action="#{EditarTipoVivienda.btnaceptar_action}" id="btnaceptar" image="/resources/btnAceptar.png"
-                                    style="height: 48px; left: 15%; top: 780px; position: absolute; width: 15%" value="ACEPTAR"/>
+                                    style="height: 48px; left: 126px; top: 798px; position: absolute; width: 15%" value="ACEPTAR"/>
                                 <ice:selectOneMenu id="dropestructura" immediate="true" partialSubmit="true"
                                     style="left: 562px; top: 94px; position: absolute; width: 95px" value="#{ServicioVivienda.tipoViviendaEdicion.estructura}">
                                     <f:selectItems id="dropdown1SelectItems" value="#{EditarTipoVivienda.estructura}"/>
@@ -80,12 +80,11 @@
                                 <ice:outputLabel id="label12" style="height: 20px; left: 84px; top: 84px; position: absolute" value="Nombre del Tipo"/>
                                 <ice:inputText id="txttipoV" label="Tipo" required="true" requiredMessage="Nombre: Ingrese el nombre"
                                     style="height: 23px; left: 214px; top: 82px; position: absolute; width: 143px" value="#{ServicioVivienda.tipoViviendaEdicion.tipo}"/>
-                                <ice:inputFile action="#{EditarTipoVivienda.fileUploadPlano_action}"
-                                    actionListener="#{EditarTipoVivienda.fileUploadPlano_processAction}" autoUpload="true" id="fileUploadPlano"
-                                    inputTextSize="25" style="left: 84px; top: 300px; position: absolute" title="Plano" uploadDirectory="tmpupload" width="270"/>
-                                <ice:outputLabel id="lblPlano" style="left: 84px; top: 264px; position: absolute; width: 45px" value="Plano"/>
+                                <ice:inputFile actionListener="#{EditarTipoVivienda.fileUploadPlano_processAction}" autoUpload="true" id="fileUploadPlano"
+                                    inputTextSize="25" style="left: 84px; top: 492px; position: absolute" title="Plano" uploadDirectory="tmpupload"/>
+                                <ice:outputLabel id="lblPlano" style="left: 84px; top: 462px; position: absolute; width: 45px" value="Plano"/>
                                 <ice:commandButton action="#{EditarTipoVivienda.btncancelar_action}" id="btncancelar" image="/resources/btnVolver.png"
-                                    immediate="true" style="height: 48px; left: 30%; top: 780px; position: absolute; width: 15%" value="CANCELAR"/>
+                                    immediate="true" style="height: 48px; left: 270px; top: 798px; position: absolute; width: 15%" value="CANCELAR"/>
                                 <ice:outputLabel id="label6" style="left: 84px; top: 156px; position: absolute; width: 105px" value="Area : ( m2)"/>
                                 <ice:inputText id="txtrarea" onchange="toEntero(this);" onkeyup="toEntero(this);" partialSubmit="true"
                                     style="height: 23px; left: 214px; top: 154px; position: absolute; width: 143px" value="#{ServicioVivienda.tipoViviendaEdicion.area}"/>
@@ -98,15 +97,13 @@
                                 <ice:outputLabel id="label15" style="left: 84px; top: 228px; position: absolute; width: 93px" value="Presupuesto:"/>
                                 <ice:inputText id="txtrpresupuesto" partialSubmit="true" readonly="true"
                                     style="height: 23px; left: 214px; top: 226px; position: absolute; width: 143px" value="#{ServicioVivienda.tipoViviendaEdicion.presupuesto}"/>
-                                <ice:outputLabel id="label17" style="left: 84px; top: 336px; position: absolute" value="Ambientes :"/>
+                                <ice:outputLabel id="label17" style="left: 84px; top: 270px; position: absolute" value="Ambientes :"/>
                                 <ice:inputTextarea id="textAmbientes"
-                                    style="font-size: 14px; height: 144px; left: 82px; top: 370px; position: absolute; width: 275px" value="#{TipoVivienda.servicioVivienda.tipoViviendaEdicion.ambientes}"/>
+                                    style="font-size: 14px; height: 144px; left: 82px; top: 298px; position: absolute; width: 377px" value="#{TipoVivienda.servicioVivienda.tipoViviendaEdicion.ambientes}"/>
                                 <ice:outputLabel id="label18" style="left: 84px; top: 192px; position: absolute; width: 117px" value="Valor por m²:"/>
                                 <ice:inputText id="txtrvalormetro" onchange="toEntero(this);" onkeyup="toEntero(this);" partialSubmit="true"
                                     style="height: 23px; left: 214px; top: 190px; position: absolute; width: 143px" value="#{ServicioVivienda.tipoViviendaEdicion.valormetro}"/>
                                 <!--width="216"/&gt;/-->
-                                <ice:graphicImage height="24" id="gimVistoPlano" rendered="#{ServicioVivienda.renderPlano}"
-                                    style="left: 216px; top: 264px; position: absolute" value="/resources/visto.jpeg" width="24"/>
                                 <ice:outputLabel id="label10" style="left: 84px; top: 120px; position: absolute; text-align: left; width: 69px" value="Proyecto:"/>
                                 <ice:selectOneMenu id="somProy" label="Proyecto" required="true" requiredMessage="Proyecto: Seleccione proyecto"
                                     style="height: 23px; left: 214px; top: 118px; position: absolute; width: 143px" value="#{EditarTipoVivienda.proyectoId}">
@@ -122,6 +119,9 @@
                                             label="Ayuda" mimeType="application/pdf" resource="#{PaginaAdministradorSistema.recursoAyuda}" shared="true"/>
                                     </div>
                                 </ice:panelGrid>
+                                <ice:graphicImage height="232" id="graphicImage2"
+                                    style="border-width: 1px; border-style: solid; border-color: rgb(199, 187, 187) rgb(199, 187, 187) rgb(199, 187, 187) rgb(199, 187, 187); left: 90px; top: 528px; position: absolute"
+                                    value="#{EditarTipoVivienda.nombrePlano}" width="369"/>
                             </ice:panelLayout>
                         </div>
                         <!-- Panel Popup Ayuda -->
@@ -140,7 +140,8 @@
                                     </p>
                                     <p>En ésta página usted pude elejir las características del tipo de vivienda</p>
                                     <p>Ingrese el número de metros cuadrados de construcción, el valor por metro cuadrado e inmediatamente se calculará el presupuesto</p>
-                                    <p><b>Ambientes: </b>En este campo ingrese un texto descriptivo de la estructura del tipo de vivienda, como por ejemplo:</p>
+                                    <p>
+                                        <b>Ambientes: </b>En este campo ingrese un texto descriptivo de la estructura del tipo de vivienda, como por ejemplo:</p>
                                     <ul>
                                         <li>3 Dormitorios</li>
                                         <li>2 baños</li>

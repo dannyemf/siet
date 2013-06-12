@@ -31,7 +31,7 @@
                                 <ice:outputLabel id="label1" style="left: 25%; top: 30px; position: absolute; text-align: center; width: 75%" value="DATOS DE CLIENTES REGISTRADOS EN EL SISTEMA"/>
                             </div>
                             <ice:panelLayout id="panelLayout55" style="border: 0px solid rgb(0, 0, 0); height: 95%; left: 30%; top: 50px; position: absolute; width: 65%">
-                                <ice:panelTabSet id="panelTabSet1" selectedIndex="2"
+                                <ice:panelTabSet id="panelTabSet1"
                                     style="left: 0%; top: 10px; position: absolute; text-align: center; width: 100%"
                                     tabChangeListener="#{Ver.panelTabSet1_processTabChange}" tabPlacement="Top" width="696">
                                     <ice:panelTab id="panelTab1" label="Proyecto">
@@ -88,28 +88,51 @@
                                             <ice:inputText id="txtTpPuer" readonly="true" value="#{ServicioProyecto.proyectoEdicion.tipoVivienda.puertas}"/>
                                             <ice:outputText id="lblTpVent" value="Ventanas"/>
                                             <ice:inputText id="txtTpVent" readonly="true" value="#{ServicioProyecto.proyectoEdicion.tipoVivienda.ventanas}"/>
-                                            <ice:outputText id="lblTpPlano" value="Plano"/>
-                                            <ice:graphicImage alt="Plano no cargado" height="200" id="imgTpPlano"
-                                                value="#{ServicioProyecto.proyectoEdicion.contextPath}planos/#{ServicioProyecto.proyectoEdicion.tipoVivienda.plano}" width="200"/>
+                                            <ice:panelGrid>
+                                                <ice:outputText id="lblTpPlano" value="Plano"/>
+                                                <a title="Ver el plano (tamaño real)" target="_black" href="#{conf.siet_files_server}/planos/#{ServicioProyecto.proyectoEdicion.tipoVivienda.plano}">Ver</a>
+                                            </ice:panelGrid>
+                                            <ice:graphicImage alt="Plano no cargado" id="imgTpPlano"
+                                                value="#{conf.siet_files_server}/planos/thumb/#{ServicioProyecto.proyectoEdicion.tipoVivienda.plano}" width="200"/>
                                         </ice:panelGrid>
                                     </ice:panelTab>
                                     <ice:panelTab id="tabDoc" label="Documentacion">
                                         <ice:panelGrid columns="2" id="dridDoc">
-                                            <ice:outputText id="lblImgCedula" value="Cedula"/>
-                                            <ice:graphicImage alt="No cargada" height="200" id="imgCedula"
-                                            value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCedula}" width="200"/>
-                                            <ice:outputText id="lblImgCert" value="Certificado"/>
-                                            <ice:graphicImage alt="No cargada" height="200" id="imgCert"
-                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCertificado}" width="200"/>
+
+                                            <ice:panelGrid>
+                                                <ice:outputText id="lblImgCedula" value="Cedula"/>
+                                                <a target="_black" href="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCedula}">Ver</a>
+                                            </ice:panelGrid>                                            
+                                            <ice:graphicImage alt="No cargada" id="imgCedula"
+                                                value="#{conf.siet_files_server}/documentos/thumb/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCedula}"/>
+
+                                            <ice:panelGrid>
+                                                <ice:outputText id="lblImgCert" value="Certificado"/>
+                                                <a target="_black" href="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCertificado}">Ver</a>
+                                            </ice:panelGrid>
+                                            <ice:graphicImage alt="No cargada" id="imgCert"
+                                                value="#{conf.siet_files_server}/documentos/thumb/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgCertificado}"/>
+
+                                            <ice:panelGrid>
                                             <ice:outputText id="lblImgEsc" value="Escritura"/>
-                                            <ice:graphicImage alt="No cargada" height="200" id="imgEsc"
-                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgEscritura}" width="200"/>
+                                            <a target="_black" href="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgEscritura}">Ver</a>
+                                            </ice:panelGrid>
+                                            <ice:graphicImage alt="No cargada" id="imgEsc"
+                                                value="#{conf.siet_files_server}/documentos/thumb/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgEscritura}"/>
+
+                                            <ice:panelGrid>
                                             <ice:outputText id="lblImgLib" value="Libreta"/>
-                                            <ice:graphicImage alt="No cargada" height="200" id="imgLib"
-                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgLibreta}" width="200"/>
+                                            <a target="_black" href="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgLibreta}">Ver</a>
+                                            </ice:panelGrid>
+                                            <ice:graphicImage alt="No cargada" id="imgLib"
+                                                value="#{conf.siet_files_server}/documentos/thumb/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgLibreta}"/>
+
+                                            <ice:panelGrid>
                                             <ice:outputText id="lblImgTerr" value="Terreno"/>
-                                            <ice:graphicImage alt="No cargada" height="200" id="imgTerr"
-                                                value="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgTerreno}" width="200"/>
+                                            <a target="_black" href="#{conf.siet_files_server}/documentos/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgTerreno}">Ver</a>
+                                            </ice:panelGrid>
+                                            <ice:graphicImage alt="No cargada" id="imgTerr"
+                                                value="#{conf.siet_files_server}/documentos/thumb/#{ServicioProyecto.proyectoEdicion.propietario.documentacion.imgTerreno}"/>
                                         </ice:panelGrid>
                                     </ice:panelTab>
                                     <ice:panelTab id="tabAp" label="Aprobar/Rechazar">
@@ -118,7 +141,7 @@
                                             <ice:inputTextarea id="txtObservacion" required="true" style="height: 200px; width: 416px" value="#{Ver.observacion}"/>
                                             <ice:outputText id="outputText3"/>
                                             <ice:message errorClass="errorMessage" fatalClass="fatalMessage" for="txtObservacion" id="message1"
-                                                infoClass="infoMessage" showSummary="true" warnClass="warnMessage"/>
+                                                infoClass="infoMessage" warnClass="warnMessage"/>
                                         </ice:panelGrid>
                                         <ice:panelLayout id="gridComApr" layout="flow" style="text-align: center; width: 100%" visible="true">
                                             <ice:commandButton action="#{Ver.btnAprobar_action}" id="btnAprobar" value="Aprobar"/>

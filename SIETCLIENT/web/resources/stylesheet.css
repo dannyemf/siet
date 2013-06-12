@@ -2375,7 +2375,7 @@ Disabled classes for the calendar controls
 }
 
 .iceMsgError {
-
+    color: red;
 }
 
 .iceMsgWarn {
@@ -2398,7 +2398,7 @@ Disabled classes for the calendar controls
 }
 
 .iceMsgsError {
-
+    color: red;
 }
 
 .iceMsgsWarn {
@@ -2654,4 +2654,17 @@ Disabled classes for the calendar controls
     border-top: 1px solid #ABABAB;
     border-bottom: 1px solid #ABABAB;
     cursor: n-resize;
+}
+
+.btnR{
+    background-image: url(refresh_button_0.png);
+    width: 192px;
+    height: 50px;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.btnR:hover{
+    background-image: url(refresh_button_1.png);
 }

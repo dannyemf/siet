@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import siet.servicio.ServicioCliente;
 import siet.modelo.Documentacion;
 import siet.servicio.ServicioDocumentacion;
+import siet.util.ThumbailUtil;
 import sietice.reportes.RecursoFile;
 
 
@@ -428,7 +429,7 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
         boolean b = true;
 
         if(fileCeddula != null){
-            d.setImgCedula(msgCedula);
+            //d.setImgCedula(msgCedula);
         }else{
             if(d.getImgCedula()==null){
                 fatal("Ingrese la cedula"); b= false;
@@ -470,29 +471,39 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
         if(b){
             if(fileCeddula != null){
                 fileCeddula.renameTo(new File(rutaDocs+fileCeddula.getName()));
-                File f = new File(rutaDocs+d.getImgCedula());
-               // f.delete();
+                //File f = new File(rutaDocs+d.getImgCedula());
+                // f.delete();
                 d.setImgCedula(msgCedula);
+
+                ThumbailUtil.crearThumbail(rutaDocs+fileCeddula.getName(),rutaDocs+"thumb/" + fileCeddula.getName(), 200,200);
             }
             if(fileCertRegistro != null){
                 fileCertRegistro.renameTo(new File(rutaDocs+fileCertRegistro.getName()));
                 File f = new File(rutaDocs+d.getImgCertificado()); f.delete();
                 d.setImgCertificado(msgCertificado);
+
+                ThumbailUtil.crearThumbail(rutaDocs+fileCertRegistro.getName(),rutaDocs+"thumb/" + fileCertRegistro.getName(), 200,200);
             }
             if(fileEscritura != null){
                 fileEscritura.renameTo(new File(rutaDocs+fileEscritura.getName()));
                 File f = new File(rutaDocs+d.getImgEscritura()); f.delete();
                 d.setImgEscritura(msgEscritura);
+
+                ThumbailUtil.crearThumbail(rutaDocs+fileEscritura.getName(),rutaDocs+"thumb/" + fileEscritura.getName(), 200,200);
             }
             if(fileFotoTerreno != null){
                 fileFotoTerreno.renameTo(new File(rutaDocs+fileFotoTerreno.getName()));
                 File f = new File(rutaDocs+d.getImgTerreno()); f.delete();
                 d.setImgTerreno(msgTerreno);
+
+                ThumbailUtil.crearThumbail(rutaDocs+fileFotoTerreno.getName(),rutaDocs+"thumb/" + fileFotoTerreno.getName(), 200,200);
             }
             if(fileLibreta != null){
                 fileLibreta.renameTo(new File(rutaDocs+fileLibreta.getName()));
                 File f = new File(rutaDocs+d.getImgLibreta()); f.delete();
                 d.setImgLibreta(msgLibreat);
+
+                ThumbailUtil.crearThumbail(rutaDocs+fileLibreta.getName(),rutaDocs+"thumb/" + fileLibreta.getName(), 200,200);
             }
 
             getServicioDocumentacion().guardar();

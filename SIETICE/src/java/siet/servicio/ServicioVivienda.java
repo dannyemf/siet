@@ -66,8 +66,7 @@ public class ServicioVivienda extends AbstractSessionBean{
         TipoViviendaEdicion=tipv;
 
         sietice.EditarTipoVivienda b = ((sietice.EditarTipoVivienda)getBean("EditarTipoVivienda"));
-        b.setProyectoId(null);
-        b.setNombrePlano("");
+        b.editar(tipv);
     }
 
      public boolean  eliminar(TipoVivienda tipv){
@@ -80,8 +79,7 @@ public class ServicioVivienda extends AbstractSessionBean{
     public void editar(TipoVivienda tipv){
         this.TipoViviendaEdicion=tipv;
         sietice.EditarTipoVivienda b = ((sietice.EditarTipoVivienda)getBean("EditarTipoVivienda"));
-        b.setProyectoId(tipv.getProyecto() != null ? tipv.getProyecto().getId() : null);
-        b.setNombrePlano(tipv.getPlano());
+        b.editar(tipv);
     }
 
     public boolean guardar(){

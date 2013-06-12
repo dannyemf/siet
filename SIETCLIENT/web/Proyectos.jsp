@@ -33,8 +33,11 @@
                             </div>
                             <ice:panelLayout id="panelLayout55" style="border: 0px solid rgb(0, 0, 0); height: 80%; left: 30%; top: 45px; position: absolute; width: 65%">
                                 <div align="center" style="overflow:auto; width:auto; height:260px">
+                                    <!--
+                                    <ice:commandButton actionListener="#{Proyectos.btn_refreshAction}" styleClass="btnR" id="buttonRefresh" style="position: relative; top: 10px;" value=""/>
+                                    -->
                                     <ice:dataTable headerClass="list-header" id="dataTableProyectos" rowClasses="list-row-even,list-row-odd"
-                                        style=" top: 40px; position: relative" value="#{Proyectos.proyectos}" var="p">
+                                        style=" top: 30px; position: relative" value="#{Proyectos.proyectos}" var="p">
                                         <ice:column id="colComandos">
                                             <ice:commandLink action="#{Proyectos.lnkVer_action}" id="lnkVer" value="Ver"/>
                                             <f:facet name="header">

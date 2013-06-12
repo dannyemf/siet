@@ -29,16 +29,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="obtenerProyectos">
-<xs:sequence></xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="obtenerProyectosResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="aprobar">
 <xs:sequence>
 <xs:element name="id" type="xs:long" minOccurs="0"></xs:element>
@@ -49,6 +39,16 @@
 <xs:complexType name="aprobarResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerProyectos">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obtenerProyectosResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:complexType>
 

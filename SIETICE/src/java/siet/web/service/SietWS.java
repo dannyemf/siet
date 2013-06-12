@@ -55,6 +55,22 @@ public class SietWS {
     /**
      * Web service operation
      */
+    /*@WebMethod(operationName = "obtenerProyecto")
+    public String obtenerProyecto(@WebParam(name = "id") Long id) {
+        //TODO obtenerTexto your implementation code here:
+        ProyectoCliente p = (ProyectoCliente)new ProyectoDAO().buscarPorId(ProyectoCliente.class, id);
+
+        List<ProyectoCliente> list = new ArrayList<ProyectoCliente>();
+        list.add(p);
+
+        String s = new XMLProyectoUtil().obtenerTexto(list);
+
+        return s;
+    }*/
+
+    /**
+     * Web service operation
+     */
     @WebMethod(operationName = "aprobar")
     public boolean aprobar(@WebParam(name = "id")
     Long id, @WebParam(name = "observacion")
