@@ -178,6 +178,7 @@ public class Dao<E> implements IDao {
 
     public List buscarPorEq(Class c, String propiedad, Object valor) {
         beginTransaction();
+        getSession().clear();
 		Criteria criteria = getSession().createCriteria(c);
         criteria.setLockMode(LockMode.UPGRADE);
         criteria.add(Restrictions.eq(propiedad, valor));
@@ -189,6 +190,7 @@ public class Dao<E> implements IDao {
 
      public List buscarPorRigthLike(Class c, String propiedad, String valor) {
         beginTransaction();
+        getSession().clear();
         Criteria criteria = getSession().createCriteria(c);
         criteria.setLockMode(LockMode.UPGRADE);
         criteria.add(Restrictions.like(propiedad, valor + "%"));
