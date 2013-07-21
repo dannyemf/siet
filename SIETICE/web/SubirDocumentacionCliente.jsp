@@ -28,9 +28,7 @@
                                 <ice:outputLabel id="label7"
                                     style="background-color: rgb(255, 255, 255); font-size: 18px; font-weight: bold; left: 0px; top: 40px; position: absolute; text-align: center; width: 100%" value="DOCUMENTACIÓN PARA TRÁMITE DE VIVIENDA"/>
                                 <ice:commandButton action="#{SubirDocumentacionCliente.btnvolver_action}" id="btnvolver" image="/resources/btnVolver.png"
-                                    style="height: 48px; left: 216px; top: 606px; position: absolute; width: 141px" title="Volver a la página principal" value="VOLVER"/>
-                                <ice:messages errorClass="errorMessage" fatalClass="fatalMessage" id="messages1" infoClass="infoMessage" showSummary="true"
-                                    style="height: 55px; left: 36px; top: 522px; position: absolute; width: 855px" warnClass="warnMessage"/>
+                                    style="height: 48px; left: 216px; top: 606px; position: absolute; width: 141px" title="Volver a la página principal" value="VOLVER"/>                                
                                 <ice:panelGrid columns="2" styleClass="panelAyuda">
                                     <ice:commandButton actionListener="#{ServicioAyuda.showPopup}" id="btnAyuda" image="/resources/help_button.png"
                                         immediate="true" title="Ayuda de la documentación para el trámite" value="Ayuda"/>
@@ -39,17 +37,22 @@
                                             label="Ayuda" mimeType="application/pdf" resource="#{LoginCliente.recursoAyuda}" shared="true"/>
                                     </div>
                                 </ice:panelGrid>
+                                <p style="position: absolute; left: 36px; top: 62px; color: orange;">
+                                    <b>Nota.- </b> Los formatos permitidos para subir los docuemtos son: jpg, jpeg, png y pdf
+                                </p>
                                 <ice:panelGrid columns="2" id="panelGrid1" style="height: 221px; left: 36px; top: 102px; position: absolute" width="857">
+
                                     <ice:outputLabel id="label1" value="Cédula:"/>
                                     <ice:panelGrid>
                                         <ice:panelGrid columns="2">
-                                            <ice:inputFile actionListener="#{SubirDocumentacionCliente.fileUpcedula_processAction}" autoUpload="true"
-                                                id="fileUpcedula" progressListener="#{ServicioDocumentacion.progresoCargaArchivo}"
-                                                title="Copia de la cédula (Tipo de archivo: imagen jpg, jpeg, png)" uploadDirectory="tmpupload" validatorExpression="#{SubirDocumentacionCliente.fileUpcedula_validate}"/>
+                                            <ice:inputFile accept="image/*" actionListener="#{SubirDocumentacionCliente.fileUpcedula_processAction}"
+                                                autoUpload="true" id="fileUpcedula" progressListener="#{ServicioDocumentacion.progresoCargaArchivo}"
+                                                title="Copia de la cédula (Tipo de archivo: imagen jpg, jpeg, png y pdf)" uploadDirectory="tmpupload"/>
                                             <ice:graphicImage height="22" id="imgVisto" value="/resources/visto.jpeg"
                                                 visible="#{ServicioDocumentacion.progreso eq 100}" width="22"/>
+                                            <ice:message for="fileUpcedula"/>
                                         </ice:panelGrid>
-                                        <ice:outputProgress id="outputProgressCedula" instanceName="fileUpcedula" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso}"/>
+                                        <ice:outputProgress id="outputProgressCedula" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso}"/>
                                         <div id="sep1" style="border-top: solid 1px orange; width: 100%; height: 20px;"></div>
                                     </ice:panelGrid>
                                     <ice:outputLabel id="label2" value="Libreta de Ahorros:"/>
@@ -57,23 +60,25 @@
                                         <ice:panelGrid columns="2">
                                             <ice:inputFile actionListener="#{SubirDocumentacionCliente.fileUplibreta_processAction}" autoUpload="true"
                                                 id="fileUplibreta" progressListener="#{ServicioDocumentacion.progresoCargaArchivo2}"
-                                                title="Copia de la libreta de ahorros (Tipo de archivo: imagen jpg, jpeg, png)" uploadDirectory="tmpupload" validatorExpression="#{SubirDocumentacionCliente.fileUplibreta_validate}"/>
+                                                title="Copia de la libreta de ahorros (Tipo de archivo: imagen jpg, jpeg, png y pdf)" uploadDirectory="tmpupload"/>
                                             <ice:graphicImage height="22" id="imgVisto2" value="/resources/visto.jpeg"
                                                 visible="#{ServicioDocumentacion.progreso2 eq 100}" width="22"/>
+                                            <ice:message for="fileUplibreta"/>
                                         </ice:panelGrid>
-                                        <ice:outputProgress id="outputProgressLib" instanceName="fileUplibreta" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso2}"/>
+                                        <ice:outputProgress id="outputProgressLib" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso2}"/>
                                         <div id="sep2" style="border-top: solid 1px orange; width: 100%; height: 20px;"></div>
                                     </ice:panelGrid>
                                     <ice:outputLabel id="label3" value="Escritura:"/>
                                     <ice:panelGrid>
                                         <ice:panelGrid columns="2">
                                             <ice:inputFile actionListener="#{SubirDocumentacionCliente.fileUpescritura_processAction}" autoUpload="true"
-                                                id="fileUpescritura" preservePath="true" progressListener="#{ServicioDocumentacion.progresoCargaArchivo3}"
-                                                title="Copia de la escritura del terreno (Tipo de archivo: imagen jpg, jpeg, png)" uploadDirectory="tmpupload" validatorExpression="#{SubirDocumentacionCliente.fileUpescritura_validate}"/>
+                                                id="fileUpescritura" progressListener="#{ServicioDocumentacion.progresoCargaArchivo3}"
+                                                title="Copia de la escritura del terreno (Tipo de archivo: imagen jpg, jpeg, png y pdf)" uploadDirectory="tmpupload"/>
                                             <ice:graphicImage height="22" id="imgVisto3" value="/resources/visto.jpeg"
                                                 visible="#{ServicioDocumentacion.progreso3 eq 100}" width="22"/>
+                                            <ice:message for="fileUpescritura"/>
                                         </ice:panelGrid>
-                                        <ice:outputProgress id="outputProgressEsc" instanceName="fileUplibreta" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso3}"/>
+                                        <ice:outputProgress id="outputProgressEsc" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso3}"/>
                                         <div id="sep3" style="border-top: solid 1px orange; width: 100%; height: 20px;"></div>
                                     </ice:panelGrid>
                                     <ice:outputLabel id="label4" value="Certificado del Registro:"/>
@@ -81,26 +86,28 @@
                                         <ice:panelGrid columns="2">
                                             <ice:inputFile actionListener="#{SubirDocumentacionCliente.fileUpcertRegistra_processAction}" autoUpload="true"
                                                 id="fileUpcertRegistra" progressListener="#{ServicioDocumentacion.progresoCargaArchivo4}"
-                                                title="Copia del certificado de registro(Tipo de archivo: imagen jpg, jpeg, png)" uploadDirectory="tmpupload" validatorExpression="#{SubirDocumentacionCliente.fileUpcertRegistra_validate}"/>
+                                                title="Copia del certificado de registro(Tipo de archivo: imagen jpg, jpeg, png y pdf)" uploadDirectory="tmpupload"/>
                                             <ice:graphicImage height="22" id="imgVisto4" value="/resources/visto.jpeg"
                                                 visible="#{ServicioDocumentacion.progreso4 eq 100}" width="22"/>
+                                            <ice:message for="fileUpcertRegistra"/>
                                         </ice:panelGrid>
-                                        <ice:outputProgress id="outputProgressReg" instanceName="fileUplibreta" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso4}"/>
+                                        <ice:outputProgress id="outputProgressReg" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso4}"/>
                                         <div id="sep4" style="border-top: solid 1px orange; width: 100%; height: 20px;"></div>
                                     </ice:panelGrid>
                                     <ice:outputLabel id="label5" value="Fotografía del Terreno:"/>
                                     <ice:panelGrid>
                                         <ice:panelGrid columns="2">
                                             <ice:inputFile actionListener="#{SubirDocumentacionCliente.fileUpfototerreno_processAction}" autoUpload="true"
-                                                id="fileUpfototerreno" preservePath="true" progressListener="#{ServicioDocumentacion.progresoCargaArchivo5}"
-                                                title="Foto del terreno (Tipo de archivo: imagen jpg, jpeg, png)" uploadDirectory="tmpupload" validatorExpression="#{SubirDocumentacionCliente.fileUpfototerreno_validate}"/>
+                                                id="fileUpfototerreno" progressListener="#{ServicioDocumentacion.progresoCargaArchivo5}"
+                                                title="Foto del terreno (Tipo de archivo: imagen jpg, jpeg, png y pdf)" uploadDirectory="tmpupload"/>
                                             <ice:graphicImage height="22" id="imgVisto5" value="/resources/visto.jpeg"
                                                 visible="#{ServicioDocumentacion.progreso5 eq 100}" width="22"/>
+                                            <ice:message for="fileUpfototerreno"/>
                                         </ice:panelGrid>
-                                        <ice:outputProgress id="outputProgressTer" instanceName="fileUplibreta" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso5}"/>
+                                        <ice:outputProgress id="outputProgressTer" styleClass="uploadProgressBar" value="#{ServicioDocumentacion.progreso5}"/>
                                         <div id="sep5" style="border-top: solid 1px orange; width: 100%; height: 20px;"></div>
-                                    </ice:panelGrid>
-                                </ice:panelGrid>
+                                    </ice:panelGrid>                                    
+                                </ice:panelGrid>                                
                             </ice:panelLayout>
                             <!-- Panel Popup Ayuda -->
                             <ice:panelPopup autoCentre="true" draggable="true" id="modalPnlPop" modal="true" styleClass="corePopup" visible="#{ServicioAyuda.visiblePopup}">

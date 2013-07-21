@@ -77,18 +77,21 @@ public class ServicioDocumentacion extends AbstractSessionBean {
         if(doc == null){
             doc = new Documentacion();
             doc.setCliente(getServicioCliente().getClienteLogeado());
+        }else{
+            new DocumentacionDAO().refresh(doc);
         }
+
         fijarProgreso(doc);
         setDocumentacionEdicion(doc);
         getSubirDocumentacionCliente().editar(doc);
     }
-    public void editar(Documentacion doc){
+    public void editar(Documentacion doc){        
         fijarProgreso(doc);
         this.setDocumentacionEdicion(doc);
         getSubirDocumentacionCliente().editar(doc);
     }
 
-    private void fijarProgreso(Documentacion doc){
+    public void fijarProgreso(Documentacion doc){
         if(StringUtil.isNullOrEmpty(doc.getImgCedula())){
             progreso = 0;
         }else{

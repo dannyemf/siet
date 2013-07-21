@@ -2,10 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sietice;
 
-import com.icesoft.faces.component.inputfile.FileInfo;
 import com.icesoft.faces.component.inputfile.InputFile;
 import com.icesoft.faces.webapp.http.servlet.InterceptingServletSession;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
@@ -14,17 +12,14 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.validator.ValidatorException;
-import javax.servlet.http.HttpSession;
 import siet.servicio.ServicioCliente;
 import siet.modelo.Documentacion;
 import siet.servicio.ServicioDocumentacion;
+import siet.util.StringUtil;
 import siet.util.ThumbailUtil;
 import sietice.reportes.RecursoFile;
-
 
 public class SubirDocumentacionCliente extends AbstractPageBean {
     // <editor-fold defaultstate="collapsed" desc="Managed Component Definition">
@@ -34,14 +29,14 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
      * This method is automatically generated, so any user-specified code inserted
      * here is subject to being replaced.</p>
      */
-     private siet.modelo.Documentacion currenDocumentacion;
-     private Object cliente=null;
+    private siet.modelo.Documentacion currenDocumentacion;
+    private Object cliente = null;
     private RecursoFile recursoAyuda;
+
     private void _init() throws Exception {
     }
 
     // </editor-fold>
-
     /**
      * <p>Construct a new Page bean instance.</p>
      */
@@ -65,10 +60,9 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
             log("Page1 Initialization Failure", e);
             throw e instanceof FacesException ? (FacesException) e : new FacesException(e);
         }
-      
+
     }
 
-   
     @Override
     public void preprocess() {
     }
@@ -80,9 +74,8 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
     @Override
     public void destroy() {
     }
-
     private Boolean bandcedula;
-  
+
     public void editar(Documentacion doc) {
         msgCedula = doc.getImgCedula();
         //ok1=doc.getImgCedula();
@@ -90,43 +83,50 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
         msgEscritura = doc.getImgEscritura();
         msgLibreat = doc.getImgLibreta();
         msgTerreno = doc.getImgTerreno();
-        
+
     }
-     public ServicioCliente getServicioCliente() {
+
+    public ServicioCliente getServicioCliente() {
         return (ServicioCliente) getBean("ServicioCliente");
     }
-   
-     public  ServicioDocumentacion getServicioDocumentacion() {
+
+    public ServicioDocumentacion getServicioDocumentacion() {
         return (ServicioDocumentacion) getBean("ServicioDocumentacion");
     }
 
-     
-      //value="#{SubirDocumentacionCliente.servicioDocumentacion.documentacionEdicion.imgCedula}"
+    //value="#{SubirDocumentacionCliente.servicioDocumentacion.documentacionEdicion.imgCedula}"
+    public boolean isImagenValida(InputFile file) {
+        boolean b = false;
 
-     public boolean isImagenValida(FileInfo file){
-         if(file != null){
-             String ct = file.getContentType();
-             if(ct.equals("image/jpg") || ct.equals("image/jpeg") || ct.equals("image/png")){
-                 return true;
-             }
-         }
-         return false;
-     }
+        if (file.getFileInfo() != null) {
+            String ct = file.getFileInfo().getContentType();
+            if (ct.equals("image/jpg") || ct.equals("image/jpeg") || ct.equals("image/png") || ct.equals("application/pdf")) {
+                b = true;
+            }
+        }
 
-    
+        if (b == false) {
+            FacesMessage fm = new FacesMessage("Formato de archivo no permitido");
+            fm.setSeverity(FacesMessage.SEVERITY_ERROR);
+            FacesContext.getCurrentInstance().addMessage(file.getClientId(FacesContext.getCurrentInstance()), fm);
+        } else {
+            FacesMessage fm = new FacesMessage("Archivo subido correctamente");
+            fm.setSeverity(FacesMessage.SEVERITY_INFO);
+            FacesContext.getCurrentInstance().addMessage(file.getClientId(FacesContext.getCurrentInstance()), fm);
+        }
 
+        return b;
+    }
     private File fileCeddula;
     private File fileLibreta;
     private File fileEscritura;
     private File fileFotoTerreno;
     private File fileCertRegistro;
-
     private String msgCedula;
     private String msgLibreat;
     private String msgEscritura;
     private String msgTerreno;
     private String msgCertificado;
-
 
     /**
      * @return the fileCeddula
@@ -180,7 +180,8 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
     public void setFileFotoTerreno(File fileFotoTerreno) {
         this.fileFotoTerreno = fileFotoTerreno;
     }
-     public File getFileCertRegistro() {
+
+    public File getFileCertRegistro() {
         return fileCertRegistro;
     }
 
@@ -190,133 +191,167 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
     public void setFileCertRegistro(File fileCertRegistro) {
         this.fileCertRegistro = fileCertRegistro;
     }
-     public void fileUpcedula_validate(FacesContext context, UIComponent component, Object value) {
-        FileInfo x = (FileInfo)value;
-        if(isImagenValida(x) == false){
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir una imagen jpg", "");
-            throw new ValidatorException(fm);
-        }
-    }
-
-    public void fileUplibreta_validate(FacesContext context, UIComponent component, Object value) {
-        if(value != null){
-            FileInfo x = (FileInfo)value;
-            long z = x.getSize();
-            
-            String r = x.getFileName();
-
-            if(isImagenValida(x) == false){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
-                throw new ValidatorException(fm);
-            }
-        }else{
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
-            throw new ValidatorException(fm);
-        }
-    }
-
-    public void fileUpescritura_validate(FacesContext context, UIComponent component, Object value) {
-        if(value != null){
-            FileInfo x = (FileInfo)value;
-            if(isImagenValida(x) == false){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
-                throw new ValidatorException(fm);
-            }
-        }else{
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
-            throw new ValidatorException(fm);
-        }
-    }
-
-    public void fileUpcertRegistra_validate(FacesContext context, UIComponent component, Object value) {
-        if(value != null){
-            FileInfo x = (FileInfo)value;
-            if(isImagenValida(x) == false){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
-                throw new ValidatorException(fm);
-            }
-        }else{
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
-            throw new ValidatorException(fm);
-        }
-    }
-
-    public void fileUpfototerreno_validate(FacesContext context, UIComponent component, Object value) {
-        if(value != null){
-            FileInfo x = (FileInfo)value;
-            if(isImagenValida(x) == false){
-                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
-                throw new ValidatorException(fm);
-            }
-        }else{
-            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
-            throw new ValidatorException(fm);
-        }
-    }
-
+//     public void fileUpcedula_validate(FacesContext context, UIComponent component, Object value) {
+//        FileInfo x = (FileInfo)value;
+//        if(isImagenValida(x) == false){
+//            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir una imagen jpg", "");
+//            throw new ValidatorException(fm);
+//        }
+//    }
+//
+//    public void fileUplibreta_validate(FacesContext context, UIComponent component, Object value) {
+//        if(value != null){
+//            FileInfo x = (FileInfo)value;
+//            long z = x.getSize();
+//
+//            String r = x.getFileName();
+//
+//            if(isImagenValida(x) == false){
+//                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
+//                throw new ValidatorException(fm);
+//            }
+//        }else{
+//            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
+//            throw new ValidatorException(fm);
+//        }
+//    }
+//
+//    public void fileUpescritura_validate(FacesContext context, UIComponent component, Object value) {
+//        if(value != null){
+//            FileInfo x = (FileInfo)value;
+//            if(isImagenValida(x) == false){
+//                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
+//                throw new ValidatorException(fm);
+//            }
+//        }else{
+//            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
+//            throw new ValidatorException(fm);
+//        }
+//    }
+//
+//    public void fileUpcertRegistra_validate(FacesContext context, UIComponent component, Object value) {
+//        if(value != null){
+//            FileInfo x = (FileInfo)value;
+//            if(isImagenValida(x) == false){
+//                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
+//                throw new ValidatorException(fm);
+//            }
+//        }else{
+//            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
+//            throw new ValidatorException(fm);
+//        }
+//    }
+//
+//    public void fileUpfototerreno_validate(FacesContext context, UIComponent component, Object value) {
+//        if(value != null){
+//            FileInfo x = (FileInfo)value;
+//            if(isImagenValida(x) == false){
+//                FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir solo jpg", "");
+//                throw new ValidatorException(fm);
+//            }
+//        }else{
+//            FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Debe subir un archivo", "");
+//            throw new ValidatorException(fm);
+//        }
+//    }
 
     public void fileUpcedula_processAction(ActionEvent ae) {
-        InputFile fi = (InputFile)ae.getSource();
+        InputFile fi = (InputFile) ae.getSource();
 
-        if(fileCeddula != null){
-            fileCeddula.delete();
+        if (isImagenValida(fi)) {
+            if (fileCeddula != null) {
+                fileCeddula.delete();
+            }
+
+            File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime() + "_" + fi.getFile().getName());
+            fi.getFile().renameTo(f);
+            fileCeddula = f;
+
+            this.msgCedula = fileCeddula.getName();
+            setBandcedula(true);
+        }else{
+            if(StringUtil.isNullOrEmpty(this.msgCedula)){
+                getServicioDocumentacion().setProgreso(0);
+            }
         }
 
-        File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime()+ "_" + fi.getFile().getName());
-        fi.getFile().renameTo(f);
-        fileCeddula = f;
-       
-        this.msgCedula =fileCeddula.getName();
-        
-        setBandcedula(true);
     }
 
     public void fileUplibreta_processAction(ActionEvent ae) {
-        InputFile fi = (InputFile)ae.getSource();
-        if(fileLibreta != null){
-            fileLibreta.delete();
+        InputFile fi = (InputFile) ae.getSource();
+
+        if (isImagenValida(fi)) {
+            if (fileLibreta != null) {
+                fileLibreta.delete();
+            }
+            File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime() + "_" + fi.getFile().getName());
+            fi.getFile().renameTo(f);
+            fileLibreta = f;
+            this.msgLibreat = fileLibreta.getName();
+        }else{
+            if(StringUtil.isNullOrEmpty(this.msgLibreat)){
+                getServicioDocumentacion().setProgreso2(0);
+            }
         }
-        File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime()+ "_" + fi.getFile().getName());
-        fi.getFile().renameTo(f);
-        fileLibreta = f;
-        this.msgLibreat = fileLibreta.getName();
     }
 
     public void fileUpescritura_processAction(ActionEvent ae) {
-        InputFile fi = (InputFile)ae.getSource();
-        if(fileEscritura != null){
-            fileEscritura.delete();
+        InputFile fi = (InputFile) ae.getSource();
+
+        if (isImagenValida(fi)) {
+            if (fileEscritura != null) {
+                fileEscritura.delete();
+            }
+            File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime() + "_" + fi.getFile().getName());
+            fi.getFile().renameTo(f);
+            fileEscritura = f;
+            this.msgEscritura = fileEscritura.getName();
+        }else{
+            if(StringUtil.isNullOrEmpty(this.msgEscritura)){
+                getServicioDocumentacion().setProgreso3(0);
+            }
         }
-        File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime()+ "_" + fi.getFile().getName());
-        fi.getFile().renameTo(f);
-        fileEscritura = f;
-        this.msgEscritura = fileEscritura.getName();
     }
 
     public void fileUpcertRegistra_processAction(ActionEvent ae) {
-        InputFile fi = (InputFile)ae.getSource();
-        if(fileCertRegistro != null){
-            fileCertRegistro.delete();
+        InputFile fi = (InputFile) ae.getSource();
+
+        if (isImagenValida(fi)) {
+            if (fileCertRegistro != null) {
+                fileCertRegistro.delete();
+            }
+            File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime() + "_" + fi.getFile().getName());
+            fi.getFile().renameTo(f);
+            fileCertRegistro = f;
+            this.msgCertificado = fileCertRegistro.getName();
+        }else{
+            if(StringUtil.isNullOrEmpty(this.msgCertificado)){
+                getServicioDocumentacion().setProgreso4(0);
+            }
         }
-       File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime()+ "_" + fi.getFile().getName());
-        fi.getFile().renameTo(f);
-        fileCertRegistro = f;
-        this.msgCertificado = fileCertRegistro.getName();
     }
 
     public void fileUpfototerreno_processAction(ActionEvent ae) {
-        InputFile fi = (InputFile)ae.getSource();
-        if(fileFotoTerreno != null){
-            fileFotoTerreno.delete();
+        InputFile fi = (InputFile) ae.getSource();
+
+        if (isImagenValida(fi)) {
+            if (fileFotoTerreno != null) {
+                fileFotoTerreno.delete();
+            }
+            File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime() + "_" + fi.getFile().getName());
+            fi.getFile().renameTo(f);
+            fileFotoTerreno = f;
+            this.msgTerreno = fileFotoTerreno.getName();
+        }else{
+            if(StringUtil.isNullOrEmpty(this.msgTerreno)){
+                getServicioDocumentacion().setProgreso5(0);
+            }
         }
-        File f = new File(fi.getFile().getParent() + File.separator + new Date().getTime()+ "_" + fi.getFile().getName());
-        fi.getFile().renameTo(f);
-        fileFotoTerreno = f;
-        this.msgTerreno = fileFotoTerreno.getName();
     }
- public RecursoFile getRecursoAyuda() {
-        InterceptingServletSession e = (InterceptingServletSession)getExternalContext().getSession(true);
-        String c = e.getServletContext().getRealPath("/")+"recursos"+File.separator+"Ayuda_Cliente.pdf";
+
+    public RecursoFile getRecursoAyuda() {
+        InterceptingServletSession e = (InterceptingServletSession) getExternalContext().getSession(true);
+        String c = e.getServletContext().getRealPath("/") + "recursos" + File.separator + "Ayuda_Cliente.pdf";
         recursoAyuda = new RecursoFile(c);
         return recursoAyuda;
     }
@@ -327,6 +362,7 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
     public void setRecursoAyuda(RecursoFile recursoAyuda) {
         this.recursoAyuda = recursoAyuda;
     }
+
     /**
      * @return the msgCedula
      */
@@ -415,95 +451,54 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
 
         return null;
     }
+
     public String btnaceptar_action() {
-
-         HttpSession session = (HttpSession)getExternalContext().getSession(true);
-         //String rutaDocs = session.getServletContext().getRealPath("/")+"documentos/";
-
-         ResourceBundle r = ResourceBundle.getBundle("conf");
-
-         String rutaDocs = r.getString("siet_files_path") + "/documentos/";
-
+        ResourceBundle r = ResourceBundle.getBundle("conf");
+        String rutaDocs = r.getString("siet_files_path") + "/documentos/";
 
         Documentacion d = getServicioDocumentacion().getDocumentacionEdicion();
         boolean b = true;
 
-        if(fileCeddula != null){
-            //d.setImgCedula(msgCedula);
-        }else{
-            if(d.getImgCedula()==null){
-                fatal("Ingrese la cedula"); b= false;
-            }
-        }
-
-        if(fileCertRegistro != null){
-           // d.setImgCertificado(msgCertificado);
-        }else{
-            if(d.getImgCertificado()==null){
-                fatal("Ingrese el certificado"); b= false;
-            }
-        }
-
-        if(fileEscritura != null){
-           // d.setImgEscritura(msgEscritura);
-        }else{
-            if(d.getImgEscritura()==null){
-                fatal("Ingrese la escritura"); b= false;
-            }
-        }
-
-        if(fileFotoTerreno != null){
-           //d.setImgTerreno(msgTerreno);
-        }else{
-            if(d.getImgTerreno() ==null){
-                fatal("Ingrese la foto del terreno"); b= false;
-            }
-        }
-
-        if(fileLibreta != null){
-           // d.setImgLibreta(msgLibreat);
-        }else{
-            if(d.getImgLibreta()==null){
-                fatal("Ingrese la libreta"); b= false;
-            }
-        }
-
-        if(b){
-            if(fileCeddula != null){
-                fileCeddula.renameTo(new File(rutaDocs+fileCeddula.getName()));
+        if (b) {
+            if (fileCeddula != null) {
+                fileCeddula.renameTo(new File(rutaDocs + fileCeddula.getName()));
                 //File f = new File(rutaDocs+d.getImgCedula());
                 // f.delete();
                 d.setImgCedula(msgCedula);
 
-                ThumbailUtil.crearThumbail(rutaDocs+fileCeddula.getName(),rutaDocs+"thumb/" + fileCeddula.getName(), 200,200);
+                ThumbailUtil.crearThumbail(rutaDocs + fileCeddula.getName(), rutaDocs + "thumb/" + fileCeddula.getName(), 200, 200);
             }
-            if(fileCertRegistro != null){
-                fileCertRegistro.renameTo(new File(rutaDocs+fileCertRegistro.getName()));
-                File f = new File(rutaDocs+d.getImgCertificado()); f.delete();
+            if (fileCertRegistro != null) {
+                fileCertRegistro.renameTo(new File(rutaDocs + fileCertRegistro.getName()));
+                File f = new File(rutaDocs + d.getImgCertificado());
+                f.delete();
                 d.setImgCertificado(msgCertificado);
 
-                ThumbailUtil.crearThumbail(rutaDocs+fileCertRegistro.getName(),rutaDocs+"thumb/" + fileCertRegistro.getName(), 200,200);
+                ThumbailUtil.crearThumbail(rutaDocs + fileCertRegistro.getName(), rutaDocs + "thumb/" + fileCertRegistro.getName(), 200, 200);
             }
-            if(fileEscritura != null){
-                fileEscritura.renameTo(new File(rutaDocs+fileEscritura.getName()));
-                File f = new File(rutaDocs+d.getImgEscritura()); f.delete();
+            if (fileEscritura != null) {
+                fileEscritura.renameTo(new File(rutaDocs + fileEscritura.getName()));
+                File f = new File(rutaDocs + d.getImgEscritura());
+                f.delete();
                 d.setImgEscritura(msgEscritura);
 
-                ThumbailUtil.crearThumbail(rutaDocs+fileEscritura.getName(),rutaDocs+"thumb/" + fileEscritura.getName(), 200,200);
+                ThumbailUtil.crearThumbail(rutaDocs + fileEscritura.getName(), rutaDocs + "thumb/" + fileEscritura.getName(), 200, 200);
             }
-            if(fileFotoTerreno != null){
-                fileFotoTerreno.renameTo(new File(rutaDocs+fileFotoTerreno.getName()));
-                File f = new File(rutaDocs+d.getImgTerreno()); f.delete();
+            if (fileFotoTerreno != null) {
+                fileFotoTerreno.renameTo(new File(rutaDocs + fileFotoTerreno.getName()));
+                File f = new File(rutaDocs + d.getImgTerreno());
+                f.delete();
                 d.setImgTerreno(msgTerreno);
 
-                ThumbailUtil.crearThumbail(rutaDocs+fileFotoTerreno.getName(),rutaDocs+"thumb/" + fileFotoTerreno.getName(), 200,200);
+                ThumbailUtil.crearThumbail(rutaDocs + fileFotoTerreno.getName(), rutaDocs + "thumb/" + fileFotoTerreno.getName(), 200, 200);
             }
-            if(fileLibreta != null){
-                fileLibreta.renameTo(new File(rutaDocs+fileLibreta.getName()));
-                File f = new File(rutaDocs+d.getImgLibreta()); f.delete();
+            if (fileLibreta != null) {
+                fileLibreta.renameTo(new File(rutaDocs + fileLibreta.getName()));
+                File f = new File(rutaDocs + d.getImgLibreta());
+                f.delete();
                 d.setImgLibreta(msgLibreat);
 
-                ThumbailUtil.crearThumbail(rutaDocs+fileLibreta.getName(),rutaDocs+"thumb/" + fileLibreta.getName(), 200,200);
+                ThumbailUtil.crearThumbail(rutaDocs + fileLibreta.getName(), rutaDocs + "thumb/" + fileLibreta.getName(), 200, 200);
             }
 
             getServicioDocumentacion().guardar();
@@ -523,44 +518,44 @@ public class SubirDocumentacionCliente extends AbstractPageBean {
 
         return null;
     }
-    public void limpiar(){
 
+    public void limpiar() {
     }
-     public String btnatras_action() {
+
+    public String btnatras_action() {
         // TODO: Process the action. Return value is a navigation
         // case name where null will return to the same page.
-fileCeddula = null;
-            fileCertRegistro = null;
-            fileEscritura = null;
-            fileFotoTerreno = null;
-            fileLibreta = null;
-            msgCedula = null;
-            msgCertificado = null;
-            msgEscritura = null;
-            msgLibreat = null;
-            msgTerreno = null;
+        fileCeddula = null;
+        fileCertRegistro = null;
+        fileEscritura = null;
+        fileFotoTerreno = null;
+        fileLibreta = null;
+        msgCedula = null;
+        msgCertificado = null;
+        msgEscritura = null;
+        msgLibreat = null;
+        msgTerreno = null;
         return "case1";
     }
 
     public String btnvolver_action() {
         // boorrar los files subidos
-fileCeddula = null;
-            fileCertRegistro = null;
-            fileEscritura = null;
-            fileFotoTerreno = null;
-            fileLibreta = null;
-            msgCedula = null;
-            msgCertificado = null;
-            msgEscritura = null;
-            msgLibreat = null;
-            msgTerreno = null;
+        fileCeddula = null;
+        fileCertRegistro = null;
+        fileEscritura = null;
+        fileFotoTerreno = null;
+        fileLibreta = null;
+        msgCedula = null;
+        msgCertificado = null;
+        msgEscritura = null;
+        msgLibreat = null;
+        msgTerreno = null;
         return "case2";
     }
 
-  
     public siet.modelo.Documentacion getCurrenDocumentacion() {
         //currenDocumentacion = new DocumentacionDAO().buscarPorCliente());
-        if(currenDocumentacion == null){
+        if (currenDocumentacion == null) {
             currenDocumentacion = new siet.modelo.Documentacion();
         }
         return currenDocumentacion;

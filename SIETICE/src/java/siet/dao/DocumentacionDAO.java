@@ -259,4 +259,17 @@ public class DocumentacionDAO extends Dao {
             return b;
         }
 	}
+
+    public Documentacion refresh(Documentacion instance) {
+
+		try {
+            getSession().refresh(instance);
+		} catch (Exception re) {
+
+		}finally{
+
+        }
+
+        return instance;
+	}
 }
